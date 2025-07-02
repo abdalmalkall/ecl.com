@@ -1,75 +1,61 @@
-import modernEducationHero from "@/assets/modern-education-hero.jpg";
+import schoolLogo from "@/assets/modern-education-hero.jpg";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with overlay */}
+    <section className="relative min-h-screen flex items-center justify-center bg-white text-[#3f3f2f]">
+      
+      {/* Background image overlay (خفيفة وناعمة) */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${modernEducationHero})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-accent/85 to-secondary/90"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
-      </div>
-      
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-20 w-4 h-4 bg-white/20 rounded-full floating-animation"></div>
-        <div className="absolute top-60 right-32 w-6 h-6 bg-secondary/30 rounded-full floating-animation" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-40 left-1/4 w-3 h-3 bg-accent/25 rounded-full floating-animation" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/3 right-20 w-5 h-5 bg-white/15 rounded-full floating-animation" style={{animationDelay: '0.5s'}}></div>
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 container-custom text-center text-white">
+        className="absolute inset-0 bg-cover bg-center opacity-10"
+        style={{ backgroundImage: `url(${schoolLogo})` }}
+      />
+
+      {/* محتوى الصفحة */}
+      <div className="relative z-10 container-custom text-center px-4">
         <div className="max-w-5xl mx-auto space-y-12 animate-slide-up">
-          <div className="glow-effect">
-            <h1 className="hero-title text-white mb-8">
+
+          {/* عنوان المدرسة */}
+          <div>
+            <h1 className="text-3xl md:text-5xl font-black text-[#a89c70] mb-6">
               مدرسة مرج الحمام المهنية للبنين
             </h1>
           </div>
-          
-          <div className="space-y-8 text-lg md:text-xl leading-relaxed">
-            <div className="card-modern bg-white/10 backdrop-blur-lg p-10 space-y-6 border border-white/20">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-20 h-1 bg-secondary rounded-full"></div>
-                <h2 className="text-3xl font-black text-secondary mx-6">رؤيتنا</h2>
-                <div className="w-20 h-1 bg-secondary rounded-full"></div>
-              </div>
-              <p className="text-white/90 leading-relaxed">
-                مجتمع مدرسي فاعل، ملتزم، وطموح، ملتزم بقيم التسامح، مسترشدًا بالعلم والتطوير، يسعى للتميز.
-              </p>
+
+          {/* رؤيتنا */}
+          <div className="bg-[#f5f5dc]/50 backdrop-blur-md p-6 md:p-10 border border-[#e4dfc1] rounded-xl shadow-md space-y-6">
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-16 h-1 bg-[#a89c70] rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-black text-[#a89c70]">رؤيتنا</h2>
+              <div className="w-16 h-1 bg-[#a89c70] rounded-full" />
             </div>
-            
-            <div className="card-modern bg-white/10 backdrop-blur-lg p-10 space-y-6 border border-white/20">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-20 h-1 bg-accent rounded-full"></div>
-                <h2 className="text-3xl font-black text-accent mx-6">رسالتنا</h2>
-                <div className="w-20 h-1 bg-accent rounded-full"></div>
-              </div>
-              <p className="text-white/90 leading-relaxed">
-                توفير فرص متكافئة لجميع طلاب المدارس لتلقي تعليم عالي الجودة، يُمكّنهم من التفكير العلمي والإبداعي، والعمل بروح الفريق، والتعلم مدى الحياة، ويزودهم بالمعارف والمهارات والقيم والمواقف التي تؤهلهم لدخول سوق العمل والمساهمة في نهضة الوطن.
-              </p>
+            <p className="text-base md:text-lg leading-loose">
+              مجتمع مدرسي فاعل، ملتزم، وطموح، ملتزم بقيم التسامح، مسترشدًا بالعلم والتطوير، يسعى للتميز.
+            </p>
+          </div>
+
+          {/* رسالتنا */}
+          <div className="bg-[#f5f5dc]/50 backdrop-blur-md p-6 md:p-10 border border-[#e4dfc1] rounded-xl shadow-md space-y-6">
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-16 h-1 bg-[#b3a97c] rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-black text-[#b3a97c]">رسالتنا</h2>
+              <div className="w-16 h-1 bg-[#b3a97c] rounded-full" />
             </div>
+            <p className="text-base md:text-lg leading-loose">
+              توفير فرص متكافئة لجميع طلاب المدارس لتلقي تعليم عالي الجودة، يُمكّنهم من التفكير العلمي والإبداعي، والعمل بروح الفريق، والتعلم مدى الحياة، ويزودهم بالمعارف والمهارات والقيم والمواقف التي تؤهلهم لدخول سوق العمل والمساهمة في نهضة الوطن.
+            </p>
           </div>
-          
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button className="btn-modern text-xl px-12 py-6">
-              🚀 تسجيل الدخول للمنصة
-            </Button>
-            <Button variant="outline" className="border-2 border-white/30 text-white hover:bg-white/10 text-xl px-12 py-6 backdrop-blur-sm">
-              📖 تعرف علينا أكثر
-            </Button>
-          </div>
+
+          {/* الأزرار */}
+   
+        
+
         </div>
       </div>
-      
+
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/70 animate-bounce">
-        <ChevronDown className="w-8 h-8" />
-      </div>
+  
     </section>
   );
 };
