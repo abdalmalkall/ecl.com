@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto space-y-8">
           <h1 className="hero-title text-white">
-            أهلاً وسهلاً بكم في منصتنا التعليمية
+            مدرسة مرج الحمام المهنية للبنين
           </h1>
           
           <div className="space-y-6 text-lg md:text-xl leading-relaxed">
@@ -35,8 +35,8 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <Button className="btn-hero text-white border-none">
-            استكشف المنصة
+          <Button className="btn-hero border-none">
+            تسجيل الدخول للمنصة
           </Button>
         </div>
       </div>

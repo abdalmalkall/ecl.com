@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Logo and School Info */}
           <div className="text-center md:text-right">
             <img src={schoolLogo} alt="شعار المدرسة" className="w-24 h-24 mx-auto md:mx-0 mb-4" />
-            <h3 className="text-xl font-bold mb-2">مُطلق التواصل التربوي</h3>
+            <h3 className="text-xl font-bold mb-2">مدرسة مرج الحمام المهنية للبنين</h3>
             <p className="text-primary-foreground/80 text-sm leading-relaxed">
               مدرسة مرج الحمام<br/>
               وزارة التربية والتعليم<br/>
@@ -21,9 +21,10 @@ const Footer = () => {
           <div className="text-center">
             <h4 className="text-lg font-semibold mb-4">روابط سريعة</h4>
             <div className="space-y-2">
-              <a href="#about" className="block hover:text-accent transition-colors">نبذة عنا</a>
-              <a href="#calendar" className="block hover:text-accent transition-colors">التقويم الدراسي</a>
-              <a href="#announcements" className="block hover:text-accent transition-colors">الإعلانات</a>
+              <a href="#home" className="block hover:text-accent transition-colors">الصفحة الرئيسية</a>
+              <a href="#about" className="block hover:text-accent transition-colors">من نحن</a>
+              <a href="#specializations" className="block hover:text-accent transition-colors">التخصصات</a>
+              <a href="#login" className="block hover:text-accent transition-colors">تسجيل الدخول</a>
               <a href="#contact" className="block hover:text-accent transition-colors">اتصل بنا</a>
             </div>
           </div>
@@ -43,7 +44,7 @@ const Footer = () => {
         
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
           <p className="text-primary-foreground/80 text-sm">
-            جميع الحقوق محفوظة © Educational Communication Launcher 2025
+            جميع الحقوق محفوظة © مدرسة مرج الحمام المهنية للبنين 2025
           </p>
         </div>
       </div>

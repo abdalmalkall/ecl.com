@@ -1,8 +1,7 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import AnnouncementsSection from "@/components/AnnouncementsSection";
-import CalendarSection from "@/components/CalendarSection";
-import RolesSection from "@/components/RolesSection";
+import LoginSection from "@/components/LoginSection";
+import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -10,9 +9,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
-      <AnnouncementsSection />
-      <CalendarSection />
-      <RolesSection />
+      <LoginSection />
+      <AboutSection />
       <Footer />
     </div>
   );
