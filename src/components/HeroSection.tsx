@@ -16,6 +16,8 @@ const HeroSection = () => {
       <div className="relative z-10 container-custom text-center px-4">
         <div className="max-w-5xl mx-auto space-y-12 animate-slide-up">
 
+<p></p>
+<p></p>
           {/* عنوان المدرسة */}
           <div>
             <h1 className="text-3xl md:text-5xl font-black text-[#a89c70] mb-6">

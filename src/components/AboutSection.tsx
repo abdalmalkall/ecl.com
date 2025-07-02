@@ -110,7 +110,7 @@ const AboutSection = () => {
               <span className="text-4xl">🚀</span>
             </div>
           </div>
-          <h2 className="text-5xl md:text-6xl font-black text-[#b3a97c] mb-6 md:mb-8 glow-effect">خطة تطوير كليتنا</h2>
+          <h2 className="text-5xl md:text-6xl font-black text-[#b3a97c] mb-6 md:mb-8 glow-effect">خطة تطوير مدرستنا</h2>
           <div className="w-24 md:w-32 h-1 bg-gradient-to-r from-[#a89c70] to-[#b3a97c] mx-auto mb-8 md:mb-12 rounded-full"></div>
           
           <div className="card-modern p-6 md:p-12 glow-effect space-y-8">
