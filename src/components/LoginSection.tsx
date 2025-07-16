@@ -41,8 +41,16 @@ const LoginSection = () => {
       title: "المشرف",
       icon: "🔍",
       description: "الإشراف والمتابعة",
-          gradient: "from-[#d8cba4] to-[#d8cba4]",
-
+      gradient: "from-[#d8cba4] to-[#d8cba4]",
+      shadowColor: "shadow-yellow-300/30"
+    },
+    {
+      id: "ministry",
+      title: "وزارة التربية والتعليم",
+      icon: "🏛️",
+      description: "دخول خاص لموظفي الوزارة",
+      gradient: "from-[#d8cba4] to-[#d8cba4]",
+      shadowColor: "shadow-yellow-300/30"
     }
   ];
 
@@ -96,3 +104,4 @@ const LoginSection = () => {
 };
 
 export default LoginSection;
+
