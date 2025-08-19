@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  const storedEmail = "example@email.com";
-  const storedPassword = "123456";
+  const navigate = useNavigate();
+
+  const users = [
+    { email: "student@gmail.com", password: "111111", redirect: "/page1" },
+    { email: "teacher@gmail.com", password: "222222", redirect: "/page2" },
+    { email: "supervisor@gmail.com", password: "333333", redirect: "/page3" },
+    { email: "parent@gmail.com", password: "444444", redirect: "/page4" },
+    { email: "ministry@gmail.com", password: "555555", redirect: "/page5" },
+    { email: "manager@gmail.com", password: "666666", redirect: "/page6" },
+  ];
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,15 +25,18 @@ const Auth = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    const foundUser = users.find(
+      (user) => user.email === email && user.password === password
+    );
 
-    if (email === storedEmail && password === storedPassword) {
+    if (foundUser) {
       setLoading(true);
       setTimeout(() => {
         localStorage.setItem("currentUser", email);
         setCurrentUser(email);
         setLoading(false);
-        window.location.href = "/register"; // <-- هنا تم التعديل
-      }, 1500);
+        navigate(foundUser.redirect); // توجيه بدون ريفرش
+      }, 500);
     } else {
       alert("خطأ في الإيميل أو كلمة المرور");
     }
@@ -33,6 +45,8 @@ const Auth = () => {
   const handleLogout = () => {
     localStorage.removeItem("currentUser");
     setCurrentUser(null);
+    setEmail("");
+    setPassword("");
   };
 
   if (currentUser) {

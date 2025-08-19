@@ -6,16 +6,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Auth from "./pages/Auth"; // صفحة تسجيل الدخول/التسجيل
-import Register from "./pages/register"; // صفحة تسجيل ثانيه
+import Auth from "./pages/Auth"; // صفحة تسجيل الدخول / التسجيل
+
+// استيراد الصفحات الوهمية من Page1 إلى Page6
+import Page1 from "./pages/Page1";
+import Page2 from "./pages/Page2";
+import Page3 from "./pages/Page3";
+import Page4 from "./pages/Page4";
+import Page5 from "./pages/Page5";
+import Page6 from "./pages/Page6";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      {/* مكونات التنبيهات */}
       <Toaster />
       <Sonner />
+
+      {/* إعداد الراوتر */}
       <BrowserRouter>
         <Routes>
           {/* الصفحة الرئيسية */}
@@ -24,8 +34,13 @@ const App = () => (
           {/* صفحة تسجيل الدخول / تسجيل مستخدم */}
           <Route path="/auth" element={<Auth />} />
 
-          {/* صفحة إنشاء حساب جديد */}
-          <Route path="/register" element={<Register />} />
+          {/* الصفحات من Page1 إلى Page6 */}
+          <Route path="/page1" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
+          <Route path="/page3" element={<Page3 />} />
+          <Route path="/page4" element={<Page4 />} />
+          <Route path="/page5" element={<Page5 />} />
+          <Route path="/page6" element={<Page6 />} />
 
           {/* أي صفحة غير موجودة */}
           <Route path="*" element={<NotFound />} />
