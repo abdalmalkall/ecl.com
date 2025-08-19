@@ -132,7 +132,7 @@ const AboutSection = () => {
               
               <div className="card-modern p-6 md:p-8 bg-gradient-to-br from-[#e4dfc1]/5 to-[#a89c70]/10 shadow">
                 <div className="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-[#e4dfc1] to-[#a89c70] rounded-2xl mx-auto mb-4 md:mb-6 flex items-center justify-center text-xl md:text-2xl">
-                  🎓
+                  👨‍🏫👨‍🏫
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-[#b3a97c] mb-2 md:mb-4">الأستاذ الدكتور</h3>
                 <p className="text-2xl md:text-3xl font-black text-[#a89c70]">حمزة المناصير</p>
