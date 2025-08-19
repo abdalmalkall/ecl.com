@@ -15,6 +15,7 @@ import Page3 from "./pages/Page3";
 import Page4 from "./pages/Page4";
 import Page5 from "./pages/Page5";
 import Page6 from "./pages/Page6";
+import AboutSection from "./pages/AboutSection"; // تم تعديل السطر هنا
 
 // استيراد صفحة الطالب الشخصية
 import StudentProfile from "./pages/StudentProfile";
@@ -38,6 +39,8 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
 
           {/* الصفحات من Page1 إلى Page6 */}
+          <Route path="/about" element={<AboutSection />} />
+
           <Route path="/page1" element={<Page1 />} />
           <Route path="/page2" element={<Page2 />} />
           <Route path="/page3" element={<Page3 />} />

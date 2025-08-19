@@ -33,12 +33,13 @@ const Footer = () => {
               <a href="#home" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
                 🏠 الصفحة الرئيسية
               </a>
-              <a href="#about" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
+              <a href="/about" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
                 📖 من نحن
               </a>
-              <a href="#specializations" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
-                🎯 التخصصات
-              </a>
+           <a href="/about#about-us" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
+  🎯 التخصصات
+</a>
+
               <a href="#login" className="block text-lg hover:text-[#b3a97c] transition-colors p-2 rounded-lg hover:bg-[#f5f5dc]/10">
                 🔐 تسجيل الدخول
               </a>
