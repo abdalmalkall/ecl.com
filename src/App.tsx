@@ -16,6 +16,9 @@ import Page4 from "./pages/Page4";
 import Page5 from "./pages/Page5";
 import Page6 from "./pages/Page6";
 
+// استيراد صفحة الطالب الشخصية
+import StudentProfile from "./pages/StudentProfile";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -41,6 +44,9 @@ const App = () => (
           <Route path="/page4" element={<Page4 />} />
           <Route path="/page5" element={<Page5 />} />
           <Route path="/page6" element={<Page6 />} />
+
+          {/* صفحة الطالب الشخصية */}
+          <Route path="/student-profile" element={<StudentProfile />} />
 
           {/* أي صفحة غير موجودة */}
           <Route path="*" element={<NotFound />} />
