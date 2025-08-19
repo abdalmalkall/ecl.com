@@ -49,18 +49,7 @@ const Auth = () => {
     setPassword("");
   };
 
-  if (currentUser) {
-    return (
-      <div style={styles.container}>
-        <div style={styles.card}>
-          <h2 style={styles.title}>أهلاً {currentUser}</h2>
-          <button style={styles.button} onClick={handleLogout}>
-            تسجيل الخروج
-          </button>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div style={styles.container}>
