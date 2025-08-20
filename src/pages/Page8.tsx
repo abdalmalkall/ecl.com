@@ -197,7 +197,7 @@ const StatsCard: React.FC<{ title: string; value: string | number; icon: string 
 // Profile Header Component
 const ProfileHeader: React.FC<{ student: Student }> = ({ student }) => {
   const stats = [
-    { title: "المعدل التراكمي", value: student.gpa?.toFixed(2) || "N/A", icon: "🎯" },
+{ title: "تقيم الطالب ", value: "9.5", icon: "🎯", gradient: "bg-gradient-to-br from-amber-100 to-orange-200" },
     { title: "نسبة الحضور", value: `${student.attendanceRate}%`, icon: "📅" },
     { title: "عدد المواد", value: student.subjects.length, icon: "📚" },
     { title: "الملاحظات الإيجابية", value: student.notesPositive.length, icon: "⭐" },
