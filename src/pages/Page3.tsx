@@ -1,219 +1,349 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState } from 'react';
+import { 
+  Users, 
+  GraduationCap, 
+  Building2, 
+  FileText, 
+  Settings, 
+  BarChart3,
+  Bell,
+  Search,
+  Plus,
+  Download,
+  Eye,
+  Edit,
+  Trash2,
+  UserPlus,
+  Shield,
+  Activity,
+  Database,
+  Upload
+} from 'lucide-react';
 
-// ---------- Types ----------
-interface Note {
-  id: number;
-  text: string;
-  date?: string;
-  category?: 'user_management' | 'department_management' | 'platform_control' | 'reports' | 'activity_logs' | 'content_management';
-}
+export default function AdminDashboard() {
+  const [activeSection, setActiveSection] = useState('dashboard');
+  const [notifications, setNotifications] = useState([
+    { id: 1, message: 'طالب جديد تم تسجيله', time: 'منذ 5 دقائق', type: 'user' },
+    { id: 2, message: 'تقرير جديد تم إضافته', time: 'منذ 15 دقيقة', type: 'report' },
+    { id: 3, message: 'معلم جديد انضم للنظام', time: 'منذ ساعة', type: 'teacher' }
+  ]);
 
-interface Message {
-  id: number;
-  sender: "admin" | "staff";
-  content: string;
-  timestamp: Date;
-  status?: 'sent' | 'delivered' | 'read';
-  staffName?: string;
-}
+  // بيانات وهمية للإحصائيات
+  const stats = {
+    students: 1250,
+    teachers: 85,
+    departments: 12,
+    reports: 340
+  };
 
-interface Staff {
-  id: string;
-  name: string;
-  role: string;
-  email: string;
-  avatar?: string;
-  status?: 'online' | 'offline' | 'away';
-}
-
-// ---------- Sample Data ----------
-const adminProfile = {
-  fullName: "أحمد المدير",
-  username: "admin.ahmed",
-  email: "admin@school.edu.jo",
-  avatar: "https://i.pinimg.com/736x/0f/1a/8a/0f1a8a23456abcdef7890.jpg",
-  managedUsersCount: 150,
-  managedDepartmentsCount: 8,
-};
-
-const staffList: Staff[] = [
-  { id: "1", name: "سارة الزهراني", role: "Teacher", email: "sara@school.edu.jo", status: 'online' },
-  { id: "2", name: "محمد الحسن", role: "Department Manager", email: "mohammad@school.edu.jo", status: 'offline' },
-  { id: "3", name: "ليلى علي", role: "Supervisor", email: "leila@school.edu.jo", status: 'away' },
-];
-
-const adminNotes: Note[] = [
-  { id: 1, text: "تم إنشاء حسابات جديدة لجميع المدرسين الجدد.", date: "2025-08-19", category: 'user_management' },
-  { id: 2, text: "تم تعديل بيانات الأقسام وتحديث أسماء المسؤولين.", date: "2025-08-18", category: 'department_management' },
-  { id: 3, text: "تحديث إعدادات المنصة وإعادة تعيين صلاحيات الأدوار.", date: "2025-08-17", category: 'platform_control' },
-  { id: 4, text: "عرض كامل للتقارير الشهرية لجميع الأقسام.", date: "2025-08-16", category: 'reports' },
-  { id: 5, text: "مراجعة سجلات النشاط لجميع المستخدمين.", date: "2025-08-15", category: 'activity_logs' },
-  { id: 6, text: "إضافة مواد تعليمية جديدة على المنصة.", date: "2025-08-14", category: 'content_management' },
-];
-
-const initialMessages: Message[] = [
-  { id: 1, sender: "staff", content: "مرحبا أستاذ أحمد، تم تحديث إعدادات القسم.", timestamp: new Date(Date.now() - 3600000), status: 'read', staffName: "محمد الحسن" },
-  { id: 2, sender: "admin", content: "شكراً محمد، سأراجع التحديث الآن.", timestamp: new Date(Date.now() - 1800000), status: 'read' },
-];
-
-// ---------- Utility Functions ----------
-const getCategoryIcon = (category?: string): string => {
-  switch (category) {
-    case 'user_management': return '👤';
-    case 'department_management': return '🏢';
-    case 'platform_control': return '⚙️';
-    case 'reports': return '📊';
-    case 'activity_logs': return '📜';
-    case 'content_management': return '📚';
-    default: return '📝';
-  }
-};
-
-const formatTimestamp = (timestamp: Date): string => {
-  const now = new Date();
-  const diff = now.getTime() - timestamp.getTime();
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const minutes = Math.floor(diff / (1000 * 60));
-  
-  if (hours > 24) return timestamp.toLocaleDateString('ar-SA');
-  if (hours > 0) return `منذ ${hours} ساعة`;
-  if (minutes > 0) return `منذ ${minutes} دقيقة`;
-  return 'الآن';
-};
-
-// ---------- Components ----------
-const StatsCard: React.FC<{ title: string; value: string | number; icon: string; gradient: string }> = 
-({ title, value, icon, gradient }) => (
-  <div className={`${gradient} p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-200/30`}>
-    <div className="flex items-center justify-between">
-      <div>
-        <div className="text-3xl font-bold text-gray-900 mb-1">{value}</div>
-        <div className="text-gray-700 text-sm font-medium">{title}</div>
-      </div>
-      <div className="text-4xl opacity-80 filter drop-shadow-sm">{icon}</div>
-    </div>
-  </div>
-);
-
-const AdminProfileHeader: React.FC = () => {
-  const stats = [
-    { title: "عدد المستخدمين", value: adminProfile.managedUsersCount, icon: "👤", gradient: "bg-gradient-to-br from-gray-100 to-gray-200" },
-    { title: "عدد الأقسام", value: adminProfile.managedDepartmentsCount, icon: "🏢", gradient: "bg-gradient-to-br from-gray-200 to-gray-300" },
+  const menuItems = [
+    { id: 'dashboard', label: 'الرئيسية', icon: BarChart3 },
+    { id: 'users', label: 'إدارة المستخدمين', icon: Users },
+    { id: 'departments', label: 'إدارة الأقسام', icon: Building2 },
+    { id: 'reports', label: 'التقارير', icon: FileText },
+    { id: 'settings', label: 'الإعدادات', icon: Settings }
   ];
 
-  return (
-    <div className="bg-gradient-to-r from-gray-50 via-gray-100 to-gray-50 p-8 rounded-3xl shadow-xl mb-8 border border-gray-200/50">
-      <div className="flex flex-col md:flex-row items-center gap-6">
-        <div className="relative">
-          <div className="p-1 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full">
-            <img src={adminProfile.avatar} alt={adminProfile.fullName} className="w-32 h-32 rounded-full border-4 border-white shadow-xl object-cover"/>
-          </div>
-          <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-            <span className="text-white text-xs">👑</span>
+  const renderDashboard = () => (
+    <div className="space-y-6">
+      {/* الإحصائيات السريعة */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold">عدد الطلاب</h3>
+              <p className="text-3xl font-bold">{stats.students}</p>
+            </div>
+            <GraduationCap size={40} className="opacity-80" />
           </div>
         </div>
-        <div className="text-center md:text-right flex-1">
-          <h1 className="text-4xl font-bold mb-3 text-gray-900 drop-shadow-sm">{adminProfile.fullName}</h1>
-          <div className="space-y-2 text-gray-700">
-            <p className="text-lg font-medium">🔑 مسؤول المنصة الأعلى</p>
-            <p className="text-base">👤 {adminProfile.username}</p>
-            <p className="text-base">📧 {adminProfile.email}</p>
+        
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold">عدد المعلمين</h3>
+              <p className="text-3xl font-bold">{stats.teachers}</p>
+            </div>
+            <Users size={40} className="opacity-80" />
+          </div>
+        </div>
+        
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold">عدد الأقسام</h3>
+              <p className="text-3xl font-bold">{stats.departments}</p>
+            </div>
+            <Building2 size={40} className="opacity-80" />
+          </div>
+        </div>
+        
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-lg font-semibold">عدد التقارير</h3>
+              <p className="text-3xl font-bold">{stats.reports}</p>
+            </div>
+            <FileText size={40} className="opacity-80" />
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-        {stats.map((stat, index) => <StatsCard key={index} {...stat} />)}
+
+      {/* الأنشطة السريعة */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">إجراءات سريعة</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <button className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+              <UserPlus className="text-blue-600" size={20} />
+              <span className="text-blue-800 font-medium">إضافة مستخدم</span>
+            </button>
+            <button className="flex items-center gap-3 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+              <Building2 className="text-green-600" size={20} />
+              <span className="text-green-800 font-medium">إنشاء قسم</span>
+            </button>
+            <button className="flex items-center gap-3 p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+              <Upload className="text-purple-600" size={20} />
+              <span className="text-purple-800 font-medium">رفع ملف</span>
+            </button>
+            <button className="flex items-center gap-3 p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors">
+              <Download className="text-orange-600" size={20} />
+              <span className="text-orange-800 font-medium">تصدير تقرير</span>
+            </button>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-xl font-bold text-gray-800">الإشعارات</h3>
+            <span className="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+              {notifications.length}
+            </span>
+          </div>
+          <div className="space-y-3">
+            {notifications.map(notification => (
+              <div key={notification.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <div className={`p-1 rounded-full ${
+                  notification.type === 'user' ? 'bg-blue-100' :
+                  notification.type === 'report' ? 'bg-green-100' :
+                  'bg-purple-100'
+                }`}>
+                  {notification.type === 'user' ? 
+                    <Users size={12} className="text-blue-600" /> :
+                    notification.type === 'report' ?
+                    <FileText size={12} className="text-green-600" /> :
+                    <GraduationCap size={12} className="text-purple-600" />
+                  }
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-800">{notification.message}</p>
+                  <p className="text-xs text-gray-500">{notification.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
-};
 
-const AdminNotesSection: React.FC<{ notes: Note[] }> = ({ notes }) => (
-  <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-2xl shadow-lg border border-gray-200/50">
-    <h2 className="font-bold text-xl mb-6 flex items-center gap-3 text-gray-700">
-      <span className="text-2xl">📝</span> صلاحيات المدير
-      <span className="px-3 py-1 rounded-full text-sm font-medium bg-gray-200 text-gray-900 border border-gray-300">{notes.length}</span>
-    </h2>
-    <div className="space-y-4">
-      {notes.map(note => (
-        <div key={note.id} className="p-4 rounded-xl border-l-4 bg-gray-100 border-gray-300 text-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
-          <div className="flex items-start gap-3">
-            <span className="text-xl mt-0.5">{getCategoryIcon(note.category)}</span>
-            <div className="flex-1">
-              <p className="font-medium mb-2 leading-relaxed">{note.text}</p>
-              <div className="text-sm opacity-75">📅 {note.date}</div>
-            </div>
+  const renderUsers = () => (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-gray-800">إدارة المستخدمين</h2>
+        <div className="flex gap-3">
+          <div className="relative">
+            <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            <input 
+              type="text" 
+              placeholder="البحث عن مستخدم..."
+              className="pr-10 pl-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+            />
           </div>
+          <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            <Plus size={20} />
+            إضافة مستخدم
+          </button>
         </div>
-      ))}
-    </div>
-  </div>
-);
+      </div>
 
-const StaffListSection: React.FC<{ staff: Staff[] }> = ({ staff }) => (
-  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl shadow-lg border border-purple-200/50">
-    <h2 className="font-bold text-xl mb-6 flex items-center gap-3 text-purple-700">
-      <span className="text-2xl">👥</span> قائمة الموظفين
-      <span className="px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 border border-purple-200">{staff.length}</span>
-    </h2>
-    <div className="grid gap-4">
-      {staff.map(member => (
-        <div key={member.id} className="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl hover:shadow-md transition-all duration-300 hover:scale-105 border border-purple-200">
-          <img src={member.avatar || "/api/placeholder/50/50"} alt={member.name} className="w-12 h-12 rounded-full border-2 border-purple-200"/>
-          <div className="flex-1">
-            <div className="font-medium text-purple-900">{member.name}</div>
-            <div className="text-sm text-purple-700">{member.role}</div>
-            <div className="text-xs text-purple-600">{member.email}</div>
-          </div>
-          <div className="text-sm">
-            {member.status === 'online' ? '🟢 متصل' : member.status === 'away' ? '🟡 بعيد' : '⚪ غير متصل'}
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h3 className="font-semibold text-blue-800">الطلاب</h3>
+          <p className="text-2xl font-bold text-blue-600">1,250</p>
         </div>
-      ))}
+        <div className="bg-green-50 p-4 rounded-lg">
+          <h3 className="font-semibold text-green-800">المعلمين</h3>
+          <p className="text-2xl font-bold text-green-600">85</p>
+        </div>
+        <div className="bg-purple-50 p-4 rounded-lg">
+          <h3 className="font-semibold text-purple-800">رؤساء الأقسام</h3>
+          <p className="text-2xl font-bold text-purple-600">12</p>
+        </div>
+        <div className="bg-orange-50 p-4 rounded-lg">
+          <h3 className="font-semibold text-orange-800">موظفي الوزارة</h3>
+          <p className="text-2xl font-bold text-orange-600">8</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الاسم</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">النوع</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">البريد الإلكتروني</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الحالة</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {[1,2,3,4,5].map(i => (
+                <tr key={i}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    محمد أحمد {i}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {i % 2 === 0 ? 'طالب' : 'معلم'}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    user{i}@example.com
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                      نشط
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <div className="flex gap-2">
+                      <button className="text-blue-600 hover:text-blue-900">
+                        <Eye size={16} />
+                      </button>
+                      <button className="text-yellow-600 hover:text-yellow-900">
+                        <Edit size={16} />
+                      </button>
+                      <button className="text-red-600 hover:text-red-900">
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-);
+  );
 
-const AdminChatSection: React.FC<{ messages: Message[] }> = ({ messages }) => {
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
+  const renderContent = () => {
+    switch(activeSection) {
+      case 'dashboard': return renderDashboard();
+      case 'users': return renderUsers();
+      case 'departments':
+        return (
+          <div className="text-center py-12">
+            <Building2 size={64} className="mx-auto text-gray-400 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-600">إدارة الأقسام</h3>
+            <p className="text-gray-500">قريباً سيتم إضافة هذا القسم</p>
+          </div>
+        );
+      case 'reports':
+        return (
+          <div className="text-center py-12">
+            <FileText size={64} className="mx-auto text-gray-400 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-600">التقارير</h3>
+            <p className="text-gray-500">قريباً سيتم إضافة هذا القسم</p>
+          </div>
+        );
+      case 'settings':
+        return (
+          <div className="text-center py-12">
+            <Settings size={64} className="mx-auto text-gray-400 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-600">الإعدادات</h3>
+            <p className="text-gray-500">قريباً سيتم إضافة هذا القسم</p>
+          </div>
+        );
+      default: return renderDashboard();
+    }
+  };
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-lg overflow-hidden border border-blue-200/50">
-      <div className="h-80 overflow-y-auto p-6">
-        <div className="space-y-4">
-          {messages.map(msg => (
-            <div key={msg.id} className={`flex ${msg.sender === "admin" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl shadow-sm border ${msg.sender === "admin" ? "bg-gradient-to-r from-blue-200 to-cyan-200 text-blue-900" : "bg-white border-blue-200 text-gray-800"}`}>
-                {msg.sender === 'staff' && msg.staffName && <div className="text-xs font-medium text-blue-600 mb-1">{msg.staffName}</div>}
-                <p className="text-sm leading-relaxed font-medium">{msg.content}</p>
-                <div className={`text-xs mt-2 ${msg.sender === "admin" ? "text-blue-700" : "text-gray-500"}`}>
-                  {formatTimestamp(msg.timestamp)}
+    <div className="min-h-screen bg-gray-100" dir="rtl">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b">
+        <div className="px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                  <Shield className="text-white" size={24} />
+                </div>
+                <div>
+                  <h1 className="text-xl font-bold text-gray-800">لوحة تحكم المدير</h1>
+                  <p className="text-sm text-gray-500">مرحباً بك محمود درويش </p>
                 </div>
               </div>
             </div>
-          ))}
-          <div ref={messagesEndRef} />
+            
+            <div className="flex items-center gap-4">
+              <button className="relative p-2 text-gray-600 hover:text-gray-800">
+                <Bell size={24} />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+              </button>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">
+                  أ
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  );
-};
+      </header>
 
-// ---------- Main Component ----------
-export default function AdminDashboard(): JSX.Element {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 p-4 lg:p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <button onClick={() => window.history.back()} className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-200 text-gray-900 font-medium">
-          <span className="text-lg">←</span>
-          العودة للصفحة الرئيسية
-        </button>
+      <div className="flex">
+        {/* Sidebar */}
+        <aside className="w-64 bg-white shadow-lg">
+          <div className="p-6">
+            <nav className="space-y-2">
+              {menuItems.map(item => {
+                const Icon = item.icon;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setActiveSection(item.id)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-right transition-colors ${
+                      activeSection === item.id
+                        ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Icon size={20} />
+                    <span className="font-medium">{item.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
+          </div>
 
-        <AdminProfileHeader />
-        <AdminNotesSection notes={adminNotes} />
-        <StaffListSection staff={staffList} />
-        <AdminChatSection messages={initialMessages} />
+          {/* System Info */}
+          <div className="absolute bottom-0 w-64 p-6 border-t bg-gray-50">
+            <div className="flex items-center gap-2 text-sm text-gray-600">
+              <Activity size={16} className="text-green-500" />
+              <span>النظام يعمل بشكل طبيعي</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-500 mt-2">
+              <Database size={16} />
+              <span>آخر نسخة احتياطية: اليوم 3:00 ص</span>
+            </div>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-6">
+          {renderContent()}
+        </main>
       </div>
     </div>
   );

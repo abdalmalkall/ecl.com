@@ -1,8 +1,9 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -22,6 +23,23 @@ import StudentProfile from "./pages/StudentProfile";
 
 const queryClient = new QueryClient();
 
+// 🔹 كومبوننت لإرجاع التمرير لأعلى عند كل تغيير في المسار
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // إلغاء تذكّر مكان التمرير من المتصفح
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // إرجاع التمرير للأعلى عند فتح أي صفحة جديدة
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -31,6 +49,9 @@ const App = () => (
 
       {/* إعداد الراوتر */}
       <BrowserRouter>
+        {/* يشتغل مع كل تغيير في الـ route */}
+        <ScrollToTop />
+
         <Routes>
           {/* الصفحة الرئيسية */}
           <Route path="/" element={<Index />} />
@@ -40,7 +61,6 @@ const App = () => (
 
           {/* الصفحات من Page1 إلى Page6 */}
           <Route path="/about" element={<AboutSection />} />
-
           <Route path="/page1" element={<Page1 />} />
           <Route path="/page2" element={<Page2 />} />
           <Route path="/page3" element={<Page3 />} />
