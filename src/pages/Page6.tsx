@@ -405,9 +405,7 @@ const ChatSection: React.FC<{ teachers: Teacher[] }> = ({ teachers }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+
 
   const handleSendMessage = (): void => {
     if (newMessage.trim() === "" || !selectedTeacher) return;

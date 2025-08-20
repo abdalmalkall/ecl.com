@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-
+ 
 // ---------- Types ----------
 interface Note {
   id: number;
@@ -305,6 +305,7 @@ const FilesSection: React.FC<{
           <p className="text-sm text-amber-700">أو اسحب الملفات وأفلتها هنا (PDF, DOC, PPT, IMG)</p>
         </div>
         <input
+        autoFocus={false}
           ref={fileInputRef}
           type="file"
           multiple
@@ -378,9 +379,7 @@ const ChatSection: React.FC<{
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [isTyping, setIsTyping] = useState(false);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {

@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import LoginSection from "@/components/LoginSection";
-import AboutSection from "@/pages/AboutSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // عند فتح الصفحة أو رفرش، اجعل التمرير من الأعلى
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">

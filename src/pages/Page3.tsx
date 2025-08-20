@@ -177,9 +177,6 @@ const StaffListSection: React.FC<{ staff: Staff[] }> = ({ staff }) => (
 const AdminChatSection: React.FC<{ messages: Message[] }> = ({ messages }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
 
   return (
     <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl shadow-lg overflow-hidden border border-blue-200/50">

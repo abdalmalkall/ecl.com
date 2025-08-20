@@ -1,5 +1,5 @@
     import React, { useState, useRef, useEffect } from "react";
-
+ 
     // ---------- Types ----------
     interface Note {
     id: number;
@@ -565,9 +565,7 @@
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [isTyping, setIsTyping] = useState(false);
 
-    useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, [messages]);
+  
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
