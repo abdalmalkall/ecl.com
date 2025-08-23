@@ -144,7 +144,7 @@ const HeroSection = () => {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))}   
               </div>
             </Card>
           </motion.div>
