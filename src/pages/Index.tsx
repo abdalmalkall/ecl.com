@@ -5,11 +5,13 @@ import HeroSection from "@/components/HeroSection";
 import LoginSection from "@/components/LoginSection";
 import Footer from "@/components/Footer";
 
+// استيراد الفيديو
+import meetingVideo from "../assets/meeting-video.mp4";
+
 const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // عند فتح الصفحة أو رفرش، اجعل التمرير من الأعلى
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
   }, []);
 
@@ -27,6 +29,18 @@ const Index = () => {
         >
           من نحن
         </button>
+      </div>
+
+      {/* فيديو مباشر في الصفحة الرئيسية */}
+      <div className="my-12 flex justify-center">
+        <video
+          src={meetingVideo}
+          controls
+          autoPlay
+          className="max-w-full rounded shadow-lg"
+        >
+          متصفحك لا يدعم تشغيل الفيديو.
+        </video>
       </div>
 
       <Footer />
