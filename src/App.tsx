@@ -16,12 +16,15 @@ import Page3 from "./pages/Page3";
 import Page4 from "./pages/Page4";
 import Page5 from "./pages/Page5";
 import Page6 from "./pages/Page6";
-import Page7 from "./pages/Page7"; // تم الإضافة
-import Page8 from "./pages/Page8"; // تم الإضافة
-import AboutSection from "./pages/AboutSection"; // تم تعديل السطر هنا
+import Page7 from "./pages/Page7";
+import Page8 from "./pages/Page8";
+import AboutSection from "./pages/AboutSection";
 
 // استيراد صفحة الطالب الشخصية
 import StudentProfile from "./pages/StudentProfile";
+
+// استيراد الفيديو
+import meetingVideo from "./pages/meeting-video.mp4";
 
 const queryClient = new QueryClient();
 
@@ -30,17 +33,28 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // إلغاء تذكّر مكان التمرير من المتصفح
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
-
-    // إرجاع التمرير للأعلى عند فتح أي صفحة جديدة
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
   }, [pathname]);
 
   return null;
 };
+
+// 🔹 كومبوننت صفحة الفيديو
+const VideoPage = () => (
+  <div className="min-h-screen flex items-center justify-center bg-black">
+    <video
+      src={meetingVideo}
+      controls
+      autoPlay
+      className="max-w-full max-h-full"
+    >
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -49,9 +63,7 @@ const App = () => (
       <Toaster />
       <Sonner />
 
-      {/* إعداد الراوتر */}
       <BrowserRouter>
-        {/* يشتغل مع كل تغيير في الـ route */}
         <ScrollToTop />
 
         <Routes>
@@ -69,8 +81,11 @@ const App = () => (
           <Route path="/page4" element={<Page4 />} />
           <Route path="/page5" element={<Page5 />} />
           <Route path="/page6" element={<Page6 />} />
-          <Route path="/page7" element={<Page7 />} /> {/* تم الإضافة */}
-          <Route path="/page8" element={<Page8 />} /> {/* تم الإضافة */}
+          <Route path="/page7" element={<Page7 />} />
+          <Route path="/page8" element={<Page8 />} />
+
+          {/* صفحة الفيديو */}
+          <Route path="/video" element={<VideoPage />} />
 
           {/* صفحة الطالب الشخصية */}
           <Route path="/student-profile" element={<StudentProfile />} />
