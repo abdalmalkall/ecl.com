@@ -30,7 +30,7 @@ const LoginSection = () => {
                 className="w-full bg-gradient-to-r from-[#d8cba4] to-[#c2b98e]"
                 onClick={() => navigate("/auth")}  
               >
-                🚀 دخول الآن
+                 دخول الآن
               </Button>
             </div>
           ))}
