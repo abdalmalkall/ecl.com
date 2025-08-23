@@ -33,25 +33,29 @@ const HeroSection = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-right space-y-6"
           >
-            <Badge
-              variant="secondary"
-              className="mb-6 text-blue-600 bg-white border border-blue-600 inline-flex items-center"
-            >
-              <Calendar className="h-4 w-4 ml-2 text-blue-600" />
-              منذ عام 1987 في عهد الملك الحسين بن طلال
-            </Badge>
+<Badge
+  variant="secondary"
+  className="mb-6 inline-flex items-center border text-[#D2B48C] border-[#D2B48C] bg-white hover:bg-white"
+>
+  <Calendar className="h-4 w-4 ml-2" style={{ color: '#D2B48C' }} />
+  منذ عام 1987 في عهد الملك الحسين بن طلال
+</Badge>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-              مدرسة مرج الحمام <span className="text-primary block mt-2">المهنية للبنين</span>
-            </h1>
+<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+  مدرسة مرج الحمام <span className="block mt-2" style={{ color: '#D2B48C' }}>المهنية للبنين</span>
+</h1>
 
-            <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0">
-              <strong className="text-primary">رؤيتنا:</strong> مجتمع مدرسي فاعل، ملتزم، طموح، يسعى للتميز
-            </p>
+
+
+ <p className="text-lg md:text-xl max-w-2xl mx-auto lg:mx-0">
+  <strong style={{ color: '#D2B48C' }}>رؤيتنا:</strong>{' '}
+  <span className="text-white">مجتمع مدرسي فاعل، ملتزم، طموح، يسعى للتميز</span>
+</p>
+
 
             {/* بطاقة الرسالة */}
             <Card className="bg-white/10 backdrop-blur-sm rounded-xl p-5 border border-white/20 text-right">
-              <h3 className="font-semibold text-primary mb-3">رسالتنا</h3>
+               <strong style={{ color: '#D2B48C' }}>رسالتنا</strong>{' '}
               <div className="text-sm text-gray-200 space-y-2">
                 <p>
                   توفير فرص متكافئة لجميع طلاب المدارس لتلقي تعليم عالي الجودة، يُمكّنهم من التفكير العلمي والإبداعي،
@@ -68,22 +72,26 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.2 }}
             className="mt-6" // نقل الإحصائيات ليكون بنفس مستوى التباعد كبطاقة الرسالة
           >
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: i * 0.2 }}
-                >
-                  <Card className="p-6 text-center bg-white/10 backdrop-blur-md border border-white/20 hover:shadow-lg transition">
-                    <div className="text-3xl font-bold text-primary mb-2">{stat.number}</div>
-                    <div className="text-sm font-medium text-white">{stat.label}</div>
-                    <div className="text-xs text-gray-300">{stat.subLabel}</div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+  <div className="grid grid-cols-2 gap-4">
+  {stats.map((stat, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: i * 0.2 }}
+    >
+      <Card className="p-6 text-center bg-white/10 backdrop-blur-md border border-white/20 hover:shadow-lg transition">
+        {/* الرقم باللون البيج */}
+        <div className="text-3xl font-bold mb-2" style={{ color: '#D2B48C' }}>
+          {stat.number}
+        </div>
+        <div className="text-sm font-medium text-white">{stat.label}</div>
+        <div className="text-xs text-gray-300">{stat.subLabel}</div>
+      </Card>
+    </motion.div>
+  ))}
+</div>
+
           </motion.div>
         </div>
       </div>
