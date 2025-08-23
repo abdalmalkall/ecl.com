@@ -1,210 +1,285 @@
-// src/pages/VideoPage.tsx
 import React, { useState, useRef, useEffect } from 'react';
-import meetingVideo from '../assets/meeting-video.mp4';
+import { Play, Pause, Volume2, VolumeX, Maximize, Settings } from 'lucide-react';
 
 const VideoPage: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [showControls, setShowControls] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [showControls, setShowControls] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (video) {
+      // تحديث وقت التشغيل
+      const updateTime = () => setCurrentTime(video.currentTime);
+      const updateDuration = () => setDuration(video.duration);
+      const handleLoadedData = () => setIsLoaded(true);
 
-    const updateTime = () => setCurrentTime(video.currentTime);
-    const updateDuration = () => setDuration(video.duration);
-    
-    video.addEventListener('timeupdate', updateTime);
-    video.addEventListener('loadedmetadata', updateDuration);
-    
-    // إخفاء عناصر التحكم تلقائياً بعد 3 ثوانٍ من عدم النشاط
-    let timeoutId: NodeJS.Timeout;
-    const resetTimeout = () => {
-      clearTimeout(timeoutId);
-      setShowControls(true);
-      timeoutId = setTimeout(() => setShowControls(false), 3000);
-    };
+      video.addEventListener('timeupdate', updateTime);
+      video.addEventListener('loadedmetadata', updateDuration);
+      video.addEventListener('loadeddata', handleLoadedData);
 
-    resetTimeout();
-    video.addEventListener('mousemove', resetTimeout);
-    
-    return () => {
-      video.removeEventListener('timeupdate', updateTime);
-      video.removeEventListener('loadedmetadata', updateDuration);
-      video.removeEventListener('mousemove', resetTimeout);
-      clearTimeout(timeoutId);
-    };
+      // تشغيل تلقائي عند تحميل الفيديو
+      video.play().catch(console.error);
+
+      return () => {
+        video.removeEventListener('timeupdate', updateTime);
+        video.removeEventListener('loadedmetadata', updateDuration);
+        video.removeEventListener('loadeddata', handleLoadedData);
+      };
+    }
   }, []);
 
   const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
     }
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const video = videoRef.current;
-    if (!video) return;
-    
-    const newTime = parseFloat(e.target.value);
-    video.currentTime = newTime;
-    setCurrentTime(newTime);
-  };
-
-  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const video = videoRef.current;
-    if (!video) return;
-    
-    const newVolume = parseFloat(e.target.value);
-    video.volume = newVolume;
-    setVolume(newVolume);
-  };
-
-  const toggleFullscreen = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      video.requestFullscreen();
+    const time = parseFloat(e.target.value);
+    if (videoRef.current) {
+      videoRef.current.currentTime = time;
+      setCurrentTime(time);
     }
   };
 
-  const formatTime = (time: number) => {
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const vol = parseFloat(e.target.value);
+    if (videoRef.current) {
+      videoRef.current.volume = vol;
+      setVolume(vol);
+    }
+  };
+
+  const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const toggleFullscreen = () => {
+    if (videoRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        videoRef.current.requestFullscreen();
+      }
+    }
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
-      {/* تأثير overlay شفاف */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm z-10"></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center p-4">
+      {/* خلفية متحركة */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -inset-10 opacity-50">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
+          <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
+        </div>
+      </div>
 
-      {/* الفيديو */}
-      <div className="relative z-20 rounded-3xl shadow-2xl border-4 border-gray-800 overflow-hidden transition-transform duration-700 hover:scale-105 group">
-        <video
-          ref={videoRef}
-          src={meetingVideo}
-          autoPlay
-          loop
-          muted={volume === 0}
-          className="max-w-[90vw] max-h-[80vh] object-cover"
-          onClick={togglePlay}
-        >
-          متصفحك لا يدعم تشغيل الفيديو.
-        </video>
+      <div className="relative w-full max-w-6xl mx-auto">
+        {/* العنوان الرئيسي */}
+        <div className="text-center mb-8 relative z-10">
+          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent mb-4 animate-pulse">
+            Meeting Video
+          </h1>
+          <p className="text-xl text-gray-300 font-light">
+            تشغيل تلقائي للفيديو مع تحكم متطور
+          </p>
+        </div>
 
-        {/* عناصر التحكم */}
+        {/* حاوية الفيديو */}
         <div 
-          className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}
+          className="relative group rounded-3xl overflow-hidden shadow-2xl bg-black/50 backdrop-blur-sm border border-white/20 transition-all duration-500 hover:shadow-purple-500/20 hover:shadow-2xl"
           onMouseEnter={() => setShowControls(true)}
+          onMouseLeave={() => setShowControls(false)}
         >
-          {/* شريط التقدم */}
-          <div className="mb-3 w-full">
-            <input
-              type="range"
-              min="0"
-              max={duration || 100}
-              value={currentTime}
-              onChange={handleSeek}
-              className="w-full h-1.5 bg-gray-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
-            />
-          </div>
+          {/* مؤشر التحميل */}
+          {!isLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/80 z-20">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="w-16 h-16 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
+                <p className="text-white text-lg font-medium">جاري تحميل الفيديو...</p>
+              </div>
+            </div>
+          )}
 
-          {/* أزرار التحكم */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              {/* زر التشغيل/الإيقاف */}
-              <button 
+          {/* الفيديو */}
+          <video
+            ref={videoRef}
+            className="w-full h-auto max-h-[70vh] object-cover"
+            autoPlay
+            muted={isMuted}
+            onClick={togglePlay}
+          >
+            <source src="/meeting-video.mp4" type="video/mp4" />
+            متصفحك لا يدعم تشغيل الفيديو.
+          </video>
+
+          {/* طبقة التحكم */}
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+            
+            {/* أزرار التحكم الرئيسية */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
                 onClick={togglePlay}
-                className="text-white hover:text-gray-300 transition-colors"
+                className="w-20 h-20 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/30"
               >
                 {isPlaying ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+                  <Pause className="w-8 h-8 text-white ml-1" />
                 ) : (
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                  <Play className="w-8 h-8 text-white ml-1" />
                 )}
               </button>
+            </div>
 
-              {/* تحكم الصوت */}
-              <div className="flex items-center space-x-2">
-                <button 
-                  onClick={() => {
-                    const newVolume = volume === 0 ? 1 : 0;
-                    setVolume(newVolume);
-                    if (videoRef.current) videoRef.current.volume = newVolume;
-                  }}
-                  className="text-white hover:text-gray-300 transition-colors"
-                >
-                  {volume === 0 ? (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" clipRule="evenodd" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-                    </svg>
-                  ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072M12 6a9 9 0 010 12m-4.5-9.5L12 3v18l-4.5-4.5H4a1 1 0 01-1-1v-7a1 1 0 011-1h3.5z" />
-                    </svg>
-                  )}
-                </button>
+            {/* شريط التحكم السفلي */}
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              {/* شريط التقدم */}
+              <div className="mb-4">
                 <input
                   type="range"
                   min="0"
-                  max="1"
-                  step="0.01"
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  className="w-20 h-1.5 bg-gray-600 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
+                  max={duration || 100}
+                  value={currentTime}
+                  onChange={handleSeek}
+                  className="w-full h-2 bg-gray-600 rounded-full appearance-none cursor-pointer slider"
                 />
               </div>
 
-              {/* الوقت */}
-              <span className="text-white text-sm font-mono">
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
+              {/* أدوات التحكم */}
+              <div className="flex items-center justify-between text-white">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                  <button
+                    onClick={togglePlay}
+                    className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                  >
+                    {isPlaying ? (
+                      <Pause className="w-6 h-6" />
+                    ) : (
+                      <Play className="w-6 h-6" />
+                    )}
+                  </button>
+
+                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <button
+                      onClick={toggleMute}
+                      className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-6 h-6" />
+                      ) : (
+                        <Volume2 className="w-6 h-6" />
+                      )}
+                    </button>
+                    <input
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.1"
+                      value={volume}
+                      onChange={handleVolumeChange}
+                      className="w-20 h-1 bg-gray-600 rounded-full appearance-none cursor-pointer slider"
+                    />
+                  </div>
+
+                  <span className="text-sm font-medium">
+                    {formatTime(currentTime)} / {formatTime(duration)}
+                  </span>
+                </div>
+
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                  <button className="p-2 hover:bg-white/20 rounded-full transition-colors">
+                    <Settings className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={toggleFullscreen}
+                    className="p-2 hover:bg-white/20 rounded-full transition-colors"
+                  >
+                    <Maximize className="w-6 h-6" />
+                  </button>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <div className="flex items-center space-x-4">
-              {/* زر التكرار */}
-              <button className="text-white hover:text-gray-300 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-              </button>
-
-              {/* زر ملء الشاشة */}
-              <button 
-                onClick={toggleFullscreen}
-                className="text-white hover:text-gray-300 transition-colors"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5" />
-                </svg>
-              </button>
+        {/* معلومات إضافية */}
+        <div className="mt-8 text-center relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-2">تشغيل تلقائي</h3>
+              <p className="text-gray-300">يبدأ الفيديو تلقائياً عند فتح الصفحة</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-2">تحكم متطور</h3>
+              <p className="text-gray-300">أدوات تحكم حديثة مع تأثيرات بصرية</p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <h3 className="text-xl font-semibold text-white mb-2">تصميم متجاوب</h3>
+              <p className="text-gray-300">يعمل بشكل مثالي على جميع الأجهزة</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* تأثير حركة خلفية ناعمة */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-purple-800 via-indigo-900 to-black opacity-20 animate-pulse z-0"></div>
+      {/* أنماط CSS مخصصة */}
+      <style >{`
+        .slider::-webkit-slider-thumb {
+          appearance: none;
+          width: 16px;
+          height: 16px;
+          background: linear-gradient(45deg, #8b5cf6, #ec4899);
+          border-radius: 50%;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+          transform: scale(1.2);
+          box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+          width: 16px;
+          height: 16px;
+          background: linear-gradient(45deg, #8b5cf6, #ec4899);
+          border-radius: 50%;
+          cursor: pointer;
+          border: none;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </div>
   );
 };
