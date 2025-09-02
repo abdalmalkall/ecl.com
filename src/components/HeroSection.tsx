@@ -36,13 +36,13 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* النصوص */}
           <div className="text-center lg:text-right space-y-8 animate-fade-in">
-            <Badge
-              variant="secondary"
-              className="mb-6 inline-flex items-center border text-[#D2B48C] border-[#D2B48C] bg-white/20 hover:bg-white/30 transition-all duration-300 backdrop-blur-sm"
-            >
-              <Calendar className="h-4 w-4 ml-2" style={{ color: "#D2B48C" }} />
-              منذ عام 1987 في عهد الملك الحسين بن طلال
-            </Badge>
+      <Badge
+  variant="secondary"
+  className="mb-6 inline-flex items-center border text-[#B38B5B] border-[#B38B5B] bg-white/20 hover:bg-white/30 transition-all duration-300 backdrop-blur-sm"
+>
+  <Calendar className="h-4 w-4 ml-2" style={{ color: "#B38B5B" }} />
+  منذ عام 1987 في عهد الملك الحسين بن طلال
+</Badge>
 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-lg">
               مدرسة مرج الحمام{" "}
