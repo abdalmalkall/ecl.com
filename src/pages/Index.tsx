@@ -41,7 +41,6 @@ const Index = () => {
         <video
           src={meetingVideo}
           controls
-          autoPlay
           className="w-full max-w-3xl rounded-2xl shadow-2xl border border-[#e4dfc1]"
         >
           متصفحك لا يدعم تشغيل الفيديو.
