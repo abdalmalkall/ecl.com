@@ -16,33 +16,39 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* الهيدر */}
       <Header />
+
+      {/* قسم البطل */}
       <HeroSection />
+
+      {/* قسم تسجيل الدخول */}
       <LoginSection />
 
-      {/* زر للانتقال إلى صفحة من نحن */}
-      <div className="text-center my-8">
+      {/* زر الانتقال إلى من نحن */}
+      <div className="text-center my-12">
         <button
           onClick={() => navigate("/about")}
-          className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          className="px-8 py-3 bg-gradient-to-r from-[#b3a97c] to-[#a89c70] text-white font-medium text-lg rounded-2xl shadow-lg transform hover:scale-105 hover:shadow-xl transition-all duration-300"
         >
           من نحن
         </button>
       </div>
 
-      {/* فيديو مباشر في الصفحة الرئيسية */}
-      <div className="my-12 flex justify-center">
+      {/* فيديو مباشر */}
+      <div className="my-16 flex justify-center px-4">
         <video
           src={meetingVideo}
           controls
           autoPlay
-          className="max-w-full rounded shadow-lg"
+          className="w-full max-w-3xl rounded-2xl shadow-2xl border border-[#e4dfc1]"
         >
           متصفحك لا يدعم تشغيل الفيديو.
         </video>
       </div>
 
+      {/* الفوتر */}
       <Footer />
     </div>
   );
