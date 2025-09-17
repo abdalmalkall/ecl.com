@@ -5,8 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import LoginSection from "@/components/LoginSection";
 import Footer from "@/components/Footer";
 
-// استيراد الفيديو
-import meetingVideo from "../assets/meeting-video.mp4";
+
 
 const Index = () => {
   const navigate = useNavigate();
@@ -42,20 +41,10 @@ const Index = () => {
     احسب معدلك
   </button>
 </div>
-
-
       {/* فيديو مباشر */}
       <div className="my-16 flex justify-center px-4">
-        <video
-          src={meetingVideo}
-          controls
-          className="w-full max-w-3xl rounded-2xl shadow-2xl border border-[#e4dfc1]"
-        >
           متصفحك لا يدعم تشغيل الفيديو.
-        </video>
       </div>
-
-      {/* الفوتر */}
       <Footer />
     </div>
   );

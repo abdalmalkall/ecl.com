@@ -5,8 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import SmartBook from "./pages/SmartBook";
-
-// استيراد الصفحات
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
@@ -20,39 +18,26 @@ import Page7 from "./pages/Page7";
 import Page8 from "./pages/Page8";
 import AboutSection from "./pages/AboutSection";
 import StudentProfile from "./pages/StudentProfile";
-
-// استيراد صفحة الفيديو من ملف خارجي
-import VideoPage from './pages/VideoPage';
-
-
 const queryClient = new QueryClient();
-
-// كومبوننت لإرجاع التمرير للأعلى عند تغيير المسار
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
   }, [pathname]);
-
   return null;
 };
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-
       <BrowserRouter>
         <ScrollToTop />
-
         <Routes>
           <Route path="/smart-book" element={<SmartBook />} />
-
           <Route path="/" element={<Index />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/about" element={<AboutSection />} />
@@ -64,15 +49,7 @@ const App = () => (
           <Route path="/page6" element={<Page6 />} />
           <Route path="/page7" element={<Page7 />} />
           <Route path="/page8" element={<Page8 />} />
-
-          {/* صفحة الفيديو */}
-     <Route path="/video" element={<VideoPage />} />
-
-
-          {/* صفحة الطالب الشخصية */}
           <Route path="/student-profile" element={<StudentProfile />} />
-
-          {/* أي صفحة غير موجودة */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
@@ -81,4 +58,3 @@ const App = () => (
 );
 
 export default App;
-// --- IGNORE ---
