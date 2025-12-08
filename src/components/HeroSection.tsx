@@ -56,8 +56,15 @@ const HeroSection = () => {
               <span className="text-white font-medium">
                 مجتمع مدرسي فاعل، ملتزم، طموح، يسعى للتميز
               </span>
-            </div>
 
+            </div>
+<div>
+    <strong className="text-[#D2B48C] text-xl">ومن اهدافنا: </strong>{" "}
+              <span className="text-white font-medium">
+              تكامل العملية التعليمية
+              </span>
+
+</div>
             {/* بطاقة الرسالة */}
             <Card className="bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/30 text-right max-w-2xl mx-auto lg:mx-0 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:bg-white/20">
               <h3 className="text-[#D2B48C] text-xl font-bold mb-4 flex flex-row-reverse items-center">

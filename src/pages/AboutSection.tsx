@@ -154,7 +154,7 @@ const AboutSection = () => {
             <div className="bg-gradient-to-br from-[#f5f5dc] to-[#e4dfc1] rounded-3xl p-8 shadow-lg border border-white/30 transform transition-transform duration-500 hover:scale-[1.02]">
               <h3 className="text-2xl font-bold text-[#6b6b4d] mb-4">الرؤية / Vision</h3>
               <p className="text-lg text-[#6b6b4d]">
-                أن نكون الرواد في تقديم التعليم المهني والتقني المتميز الذي يلبي احتياجات سوق العمل المحلي والعالمي.
+                أن نكون الرواد في تقديم التعليم المهني والتقني المتميز الذي يلبي احتياجات سوق العمل المحلي والعالمي .
                 <span className="block mt-2 text-[#a89c70]">To be pioneers in providing distinguished vocational and technical education that meets the needs of the local and global labor market.</span>
               </p>
             </div>
