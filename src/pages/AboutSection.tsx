@@ -385,7 +385,7 @@ const AboutSection = () => {
             
             <div className="relative z-10">
               <p className="text-lg md:text-xl text-[#6b6b4d] leading-relaxed mb-8">
-                تم إنشاء هذا الموقع بواسطة طلاب الأول ثانوي - إدارة أعمال
+                تم إنشاء هذا الموقع بواسطة طلاب الثاني  ثانوي - إدارة أعمال
                 <br />
                 <span className="text-[#a89c70] font-medium mt-2 block">
                   This website was created by First-Year Business Administration students.
