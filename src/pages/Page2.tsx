@@ -57,32 +57,32 @@
     subject: "إدارة اعمال",
     classes: ["الصف العاشر ", "الصف الحادي عشر ", "الصف الثاني عشر "],
     email: "hamzeh@school.edu.jo",
-    avatar: "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg",
+    avatar: "",
     experience: 12,
     studentsCount: 85,
     classesCount: 3,
     };
 
     const students: Student[] = [
-    { id: "1", name: "إبراهيم أحمد يوسف المناصير", avatar: "https://i.pinimg.com/736x/60/a1/71/60a1719d559469dbb6bfa1b6d0890e5e.jpg", grade: "الثاني عشر ج", status: 'online' },
-    { id: "2", name: " أحمد الزهراني", grade: "الحادي عشر ب", status: 'offline' },
-    { id: "3", name: "محمد علي السالم", grade: "العاشر أ", status: 'away' },
-    { id: "4", name: " محمود الحسن", grade: "الثاني عشر ج", status: 'online' },
+    { id: "1", name: "عبد الملك", avatar: "https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg", grade: "الثاني عشر ج", status: 'online' },
+    { id: "2", name: " فهد", grade: "ثاني عشر", status: 'offline' },
+    { id: "3", name: "صهيب", grade: "ثاني عشر", status: 'away' },
+    { id: "4", name: " امير", grade: "الثاني عشر ", status: 'online' },
     ];
 
     const teacherNotes: Note[] = [
     { id: 1, text: "حققت نتائج ممتازة في تدريس وحدة الجبر المتقدم", date: "2024-03-15", category: 'academic' },
     { id: 2, text: "تم تطوير طرق تدريس تفاعلية جديدة لمادة إدارة الاعمال    ", date: "2024-03-14", category: 'academic' },
     { id: 3, text: "المشاركة الفعالة في اجتماعات أولياء الأمور", date: "2024-03-13", category: 'participation' },
-    { id: 4, text: "إنجاز مشروع تطوير المناهج بنجاح", date: "2024-03-12", category: 'academic' },
+    { id: 4, text: "إنجاز مشروع تطوير المناهج بنجاح", date: "2025-03-12", category: 'academic' },
     { id: 5, text: "تقدير من الإدارة لالتزام بالمواعيد والانضباط", date: "2024-03-11", category: 'behavior' },
     ];
 
     const studentNotes: Note[] = [
-    { id: 1, text: "متفوق في الرياضيات والعلوم بشكل استثنائي", date: "2024-03-15", category: 'academic', studentName: "إبراهيم يوسف المناصير" },
-    { id: 2, text: "تحسن ملحوظ في مشاركة الطالبة في النقاشات الصفية", date: "2024-03-14", category: 'participation', studentName: "سارة أحمد الزهراني" },
-    { id: 3, text: "يحتاج لتحسين إدارة الوقت في الامتحانات", date: "2024-03-13", category: 'academic', studentName: "محمد علي السالم" },
-    { id: 4, text: "أداء ممتاز في مشروع الفيزياء التطبيقية", date: "2024-03-12", category: 'academic', studentName: "فاطمة محمود الحسن" },
+    { id: 1, text: "متفوق في الرياضيات والعلوم بشكل استثنائي", date: "2024-03-15", category: 'academic', studentName: "عبد الملك" },
+    { id: 2, text: "تحسن ملحوظ في مشاركة الطالبة في النقاشات الصفية", date: "2024-03-14", category: 'participation', studentName: "فهد" },
+    { id: 3, text: "يحتاج لتحسين إدارة الوقت في الامتحانات", date: "2024-03-13", category: 'academic', studentName: "صهيب" },
+    { id: 4, text: "أداء ممتاز في مشروع الفيزياء التطبيقية", date: "2024-03-12", category: 'academic', studentName: "امير" },
     ];
 
     const initialMessages: Message[] = [
@@ -92,12 +92,12 @@
         content: "أستاذ حمزة، شكراً لك على الشرح الرائع لدرس اليوم!", 
         timestamp: new Date(Date.now() - 3600000),
         status: 'read',
-        studentName: "إبراهيم يوسف المناصير"
+        studentName: "عبد الملك"
     },
     { 
         id: 2, 
         sender: "teacher", 
-        content: "العفو يا إبراهيم، أسعدني تفاعلكم الإيجابي. هل هناك أي نقطة تحتاج توضيح إضافي؟", 
+        content: "العفو يا عبد الملك، أسعدني تفاعلكم الإيجابي. هل هناك أي نقطة تحتاج توضيح إضافي؟", 
         timestamp: new Date(Date.now() - 3000000),
         status: 'read'
     },
@@ -107,12 +107,12 @@
         content: "أستاذ، هل يمكنك إرسال ملف التمارين الإضافية؟", 
         timestamp: new Date(Date.now() - 1800000),
         status: 'read',
-        studentName: "سارة أحمد الزهراني"
+        studentName: "صهيب"
     },
     { 
         id: 4, 
         sender: "teacher", 
-        content: "بالطبع سارة، سأقوم برفع الملف الآن في قسم الملفات.", 
+        content: "بالطبع صهيب، سأقوم برفع الملف الآن في قسم الملفات.", 
         timestamp: new Date(Date.now() - 1200000),
         status: 'delivered'
     },
@@ -123,7 +123,7 @@
     { id: 2, title: "عرض تقديمي - الجبر المتقدم", url: "https://example.com/algebra", type: 'document', size: "2.1 MB", uploadedBy: 'teacher' },
     { id: 3, title: "فيديو تعليمي - قوانين نيوتن", url: "https://example.com/newton", type: 'video', size: "68 MB", uploadedBy: 'teacher' },
     { id: 4, title: "تمارين إضافية - الهندسة", url: "https://example.com/geometry", type: 'document', size: "1.5 MB", uploadedBy: 'teacher' },
-    { id: 5, title: "مشروع الطالب إبراهيم - الفيزياء", url: "https://example.com/ibrahim-project", type: 'document', size: "4.8 MB", uploadedBy: 'student', studentName: "إبراهيم يوسف المناصير" },
+    { id: 5, title: "مشروع الطالب عبد الملك - الفيزياء", url: "https://example.com/ibrahim-project", type: 'document', size: "4.8 MB", uploadedBy: 'student', studentName: "عبدالملك" },
     ];
 
     // ---------- Utility Functions ----------
@@ -200,7 +200,7 @@
                 />
             </div>
             <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-                <span className="text-white text-xs">👨‍🏫</span>
+            
             </div>
             </div>
             

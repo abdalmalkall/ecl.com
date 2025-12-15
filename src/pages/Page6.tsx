@@ -17,15 +17,15 @@ const Page6: React.FC = () => {
           onClick={() => navigate("/Page7")}
           className="px-6 py-4 bg-gradient-to-r from-[#F5F5DC] to-[#E4DFC1] text-[#5C4633] font-semibold rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
         >
-          إبراهيم أحمد يوسف المناصير
+      عبد الملك احمد نعيم
         </button>
 
         {/* زر للطالب الثاني → Page8 */}
         <button
-          onClick={() => navigate("/page8")}
+          onClick={() => navigate("#")}
           className="px-6 py-4 bg-gradient-to-r from-[#F5F5DC] to-[#E4DFC1] text-[#5C4633] font-semibold rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
         >
-          محمد احمد يوسف المناصير
+          عمرو احمد نعيم
         </button>
       </div>
     </div>

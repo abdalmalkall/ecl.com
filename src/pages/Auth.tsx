@@ -28,10 +28,11 @@ const Auth = () => {
   const testEmails = [
     { email: "student.test@marjalhamam.edu.jo", password: "Student123!", role: "طالب تجريبي", icon: <GraduationCap className="w-4 h-4" /> },
     { email: "teacher.test@marjalhamam.edu.jo", password: "Teacher123!", role: "معلم تجريبي", icon: <User className="w-4 h-4" /> },
+     { email: "Guardian@marjalhamam.edu.jo", password: "Guardian123!", role: "ولي الامر", icon: <Users className="w-4 h-4" /> },
     { email: "admin.test@marjalhamam.edu.jo", password: "Admin123!", role: "إدارة تجريبية", icon: <Shield className="w-4 h-4" /> },
     { email: "support.test@marjalhamam.edu.jo", password: "Support123!", role: "دعم فني", icon: <Smartphone className="w-4 h-4" /> },
     { email: "engineering@marjalhamam.edu.jo", password: "Engineering123!", role: "الهندسة", icon: <Building className="w-4 h-4" /> },
-    { email: "business@marjalhamam.edu.jo", password: "Business123!", role: "إدارة الأعمال", icon: <Users className="w-4 h-4" /> },
+   
     { email: "it@marjalhamam.edu.jo", password: "IT123!", role: "تكنولوجيا المعلومات", icon: <Globe className="w-4 h-4" /> },
     { email: "principal@marjalhamam.edu.jo", password: "Principal123!", role: "المدير العام", icon: <Shield className="w-4 h-4" /> }
   ];
@@ -43,7 +44,7 @@ const Auth = () => {
     { email: "admin.test@marjalhamam.edu.jo", password: "Admin123!", redirect: "/page3", role: "مشرف" },
     { email: "support.test@marjalhamam.edu.jo", password: "Support123!", redirect: "/page4", role: "دعم فني" },
     { email: "engineering@marjalhamam.edu.jo", password: "Engineering123!", redirect: "/page5", role: "هندسة" },
-    { email: "business@marjalhamam.edu.jo", password: "Business123!", redirect: "/page6", role: "أعمال" },
+    { email: "Guardian@marjalhamam.edu.jo", password: "Guardian123!", redirect: "/page6", role: "أعمال" },
   ];
 
   const [email, setEmail] = useState("");

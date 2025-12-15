@@ -317,6 +317,7 @@ const HeroSection = () => {
                   color: colors.light,
                   backgroundColor: `${colors.light}10`
                 }}
+                onClick={() => window.open("https://maps.app.goo.gl/8GvFqPD9GR4SdCLT8", "_blank")}
               >
                 <MapPin className="ml-2 h-5 w-5" style={{ color: colors.secondary }} />
                 زيارتنا

@@ -32,7 +32,7 @@ const Index = () => {
     },
     {
       id: 3,
-      title: "بصمة النص",
+      title: "استلال النصوص",
       icon: <Fingerprint className="ml-2" size={22} />,
       onClick: () => window.open("https://app.user1.us/", "_blank", "noopener,noreferrer"),
       color: "from-[#A67B5B] to-[#956A4A]",
