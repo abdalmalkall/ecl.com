@@ -34,7 +34,7 @@ const Index = () => {
       id: 3,
       title: "AI PLAGIARISM CHECKER",
       icon: <Fingerprint className="ml-2" size={22} />,
-      onClick: () => window.open("https://app.user1.us/", "_blank", "noopener,noreferrer"),
+      onClick: () => window.open("https://ai-plagiarism-checkerai.netlify.app/", "_blank", "noopener,noreferrer"),
       color: "from-[#A67B5B] to-[#956A4A]",
       hoverColor: "hover:from-[#956A4A] hover:to-[#845939]"
     }
