@@ -6,12 +6,15 @@ import {
   Award, 
   Users, 
   Target, 
-  Building,
+  Globe,
   ChevronRight,
   Star,
-  Shield,
   BookOpen,
-  Lightbulb
+  Lightbulb,
+  Video,
+  GraduationCap,
+  FileText,
+  Cpu
 } from "lucide-react";
 
 const AboutSection = () => {
@@ -40,69 +43,94 @@ const AboutSection = () => {
 
   const specializations = [
     { 
-      name: "الهندسة (Engineering)", 
-      icon: "⚙️", 
-      gradient: "from-[#e4dfc1] to-[#b3a97c]", 
-      description: "التصميم والابتكار التقني / Innovation in design and technical creativity" 
+      name: "المنهج الوطني", 
+      icon: <BookOpen className="w-8 h-8" />, 
+      gradient: "from-blue-200 to-blue-400", 
+      description: "دروس مصورة وشاملة لجميع المواد الدراسية للمنهج الوطني الأردني",
+      features: ["دروس مجانية مصورة", "ملفات تعليمية شاملة", "اختبارات تفاعلية"]
     },
     { 
-      name: "الأعمال (Business)", 
-      icon: "💼", 
-      gradient: "from-[#f5f5dc] to-[#e4dfc1]", 
-      description: "تعلم مبادئ الإدارة والتسويق / Principles of management and marketing" 
+      name: "المنهج الدولي", 
+      icon: <Globe className="w-8 h-8" />, 
+      gradient: "from-blue-100 to-blue-300", 
+      description: "برامج متخصصة للشهادات الدولية مثل IB, IGCSE, SAT",
+      features: ["مواد دولية معتمدة", "تحضير للاختبارات", "مناهج عالمية"]
     },
     { 
-      name: "تكنولوجيا المعلومات (IT)", 
-      icon: "💻", 
-      gradient: "from-[#f5f5dc] to-[#b3a97c]", 
-      description: "البرمجة والتقنيات الحديثة / Programming and modern technologies" 
+      name: "طلبة الجامعات", 
+      icon: <GraduationCap className="w-8 h-8" />, 
+      gradient: "from-blue-300 to-cyan-500", 
+      description: "مواد مساعدة ودورات تأهيلية لطلبة الجامعات",
+      features: ["مواد جامعية مساعدة", "دورات تأهيلية", "تحضير للمسارات المهنية"]
     },
     { 
-      name: "الضيافة (Hospitality)", 
-      icon: "🍴", 
-      gradient: "from-[#f5f5dc] to-[#a89c70]", 
-      description: "فنون الطبخ وإدارة المطاعم / Culinary arts and restaurant management" 
+      name: "الدورات التدريبية", 
+      icon: <Video className="w-8 h-8" />, 
+      gradient: "from-cyan-400 to-blue-500", 
+      description: "+13 ألف دورة تدريبية متنوعة في مختلف المجالات",
+      features: ["+13 ألف دورة", "مجالات متنوعة", "تدريب عملي وتطبيقي"]
     },
     { 
-      name: "الزراعة (Agriculture)", 
-      icon: "🌱", 
-      gradient: "from-[#e4dfc1] to-[#a89c70]", 
-      description: "الزراعة المستدامة والحديثة / Sustainable and modern farming practices" 
+      name: "الذكاء الاصطناعي", 
+      icon: <Cpu className="w-8 h-8" />, 
+      gradient: "from-indigo-400 to-blue-600", 
+      description: "استخدام أحدث تقنيات الذكاء الاصطناعي في التعليم الإلكتروني",
+      features: ["تقنيات حديثة", "تعلم مخصص", "تطبيقات ذكية"]
     }
   ];
 
   const achievements = [
-    { number: "35+", label: "عاماً من الخبرة / Years of Experience", icon: <Award className="w-6 h-6" /> },
-    { number: "5000+", label: "خريج / Graduates", icon: <Users className="w-6 h-6" /> },
-    { number: "5", label: "تخصصات معتمدة / Accredited Specializations", icon: <Target className="w-6 h-6" /> },
-    { number: "20+", label: "جائزة وتكريم / Awards & Recognitions", icon: <Star className="w-6 h-6" /> }
+    { number: "2014", label: "عام التأسيس - أول منصة تعليم إلكتروني", icon: <Award className="w-6 h-6" /> },
+    { number: "2M+", label: "طالب مسجل على المنصة", icon: <Users className="w-6 h-6" /> },
+    { number: "13K+", label: "دورة تدريبية متاحة", icon: <Target className="w-6 h-6" /> },
+    { number: "2.8K", label: "معلم وخبير تعليمي", icon: <Star className="w-6 h-6" /> },
+    { number: "1.2M+", label: "ساعة مشاهدة للدروس", icon: <Video className="w-6 h-6" /> },
+    { number: "313K+", label: "ملف تعليمي متاح", icon: <FileText className="w-6 h-6" /> }
+  ];
+
+  const successStories = [
+    { 
+      name: "لين المومني", 
+      achievement: "الأولى على المملكة 2004", 
+      quote: "كتير وفرتلي وقت كونه الفيديو بالبيت وبقدر احضره وقت ما بدي، كان هاد احسن جانب بالمنصة"
+    },
+    { 
+      name: "تالا مصطفى", 
+      achievement: "الأولى على المملكة 2005", 
+      quote: "كنت ماخدة منصة جو أكاديمي كإشي تكاملي مع دراستي بالمدرسة وكنت أعتمد عليها بعد المدرسة"
+    },
+    { 
+      name: "رايا عليان", 
+      achievement: "الثانية على المملكة الأدبي", 
+      quote: "اشكر جو أكاديمي منصة المليون وبشكر كل كادرها لانهم ما تركونا ووقفوا معنا من اللحظة الاولى"
+    }
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-[#fafaf0] via-white to-[#f5f5dc] text-gray-800 py-12 px-4 relative overflow-hidden">
+    <section className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-100 text-blue-900 py-12 px-4 relative overflow-hidden">
       {/* خلفيات زخرفية متطورة */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* دوائر متحركة متعددة */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#b3a97c]/10 to-[#a89c70]/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[#e4dfc1]/10 to-[#f5f5dc]/5 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1.5s'}}></div>
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-gradient-to-r from-[#8B7355]/5 to-[#7A6345]/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '3s'}}></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-l from-[#A67B5B]/5 to-[#956A4A]/5 rounded-full blur-2xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-blue-600/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-300/10 to-blue-100/5 rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-2xl animate-pulse" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-l from-indigo-500/5 to-blue-600/5 rounded-full blur-2xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
         
         {/* خطوط زخرفية */}
-        <div className="absolute top-20 left-10 w-px h-40 bg-gradient-to-b from-transparent via-[#b3a97c]/20 to-transparent"></div>
-        <div className="absolute bottom-20 right-10 w-px h-40 bg-gradient-to-b from-transparent via-[#a89c70]/20 to-transparent"></div>
+        <div className="absolute top-20 left-10 w-px h-40 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent"></div>
+        <div className="absolute bottom-20 right-10 w-px h-40 bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"></div>
         
         {/* نقاط متناثرة */}
-        <div className="absolute top-40 left-1/4 w-2 h-2 bg-[#b3a97c]/30 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-60 right-1/3 w-3 h-3 bg-[#a89c70]/30 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-40 left-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-60 right-1/3 w-3 h-3 bg-blue-500/30 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
       </div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* شريط التنقل المميز */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 sticky top-4 bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-2xl border border-white/40 z-20 transform transition-all duration-300 hover:shadow-3xl">
           <button
             onClick={() => navigate("/")}
-            className="group flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-[#b3a97c] to-[#8B7355] text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-[#a89c70] hover:to-[#7A6345]"
+            className="group flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-blue-600"
           >
             <ArrowRight className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" />
             <span className="font-semibold">العودة للصفحة الرئيسية</span>
@@ -110,16 +138,17 @@ const AboutSection = () => {
           
           <div className="flex flex-wrap gap-2 mt-4 md:mt-0 justify-center">
             {[
-              { id: 'about-us', label: 'من نحن', icon: <Building className="w-4 h-4" /> },
-              { id: 'specializations', label: 'التخصصات', icon: <BookOpen className="w-4 h-4" /> },
+              { id: 'about-us', label: 'من نحن', icon: <Globe className="w-4 h-4" /> },
+              { id: 'services', label: 'خدماتنا', icon: <BookOpen className="w-4 h-4" /> },
               { id: 'vision', label: 'الرؤية والرسالة', icon: <Eye className="w-4 h-4" /> },
               { id: 'achievements', label: 'إنجازاتنا', icon: <Star className="w-4 h-4" /> },
-              { id: 'development', label: 'الخطة التطويرية', icon: <Lightbulb className="w-4 h-4" /> }
+              { id: 'success-stories', label: 'قصص النجاح', icon: <Users className="w-4 h-4" /> },
+              { id: 'team', label: 'فريق العمل', icon: <Lightbulb className="w-4 h-4" /> }
             ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="group flex items-center gap-2 px-4 py-2.5 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-gradient-to-r hover:from-[#f5f5dc] hover:to-[#e4dfc1] transition-all duration-300 hover:scale-105 border border-white/30 text-sm font-medium text-[#6b6b4d] hover:text-[#8B7355]"
+                className="group flex items-center gap-2 px-4 py-2.5 bg-white/50 backdrop-blur-sm rounded-lg hover:bg-gradient-to-r hover:from-blue-100 hover:to-blue-200 transition-all duration-300 hover:scale-105 border border-white/30 text-sm font-medium text-blue-800 hover:text-blue-600"
               >
                 {item.icon}
                 {item.label}
@@ -133,105 +162,182 @@ const AboutSection = () => {
         <div id="about-us" className="text-center mb-24 fade-in">
           {/* أيقونة فخمة مع تأثيرات */}
           <div className="relative inline-block mb-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#b3a97c] via-[#a89c70] to-[#8B7355] rounded-full blur-xl opacity-30 animate-pulse"></div>
-            <div className="relative bg-gradient-to-br from-white to-[#f5f5dc] p-4 rounded-3xl shadow-2xl border border-white/50">
-              <div className="bg-gradient-to-br from-[#f5f5dc] to-[#e4dfc1] p-6 rounded-2xl">
-                <Building className="w-20 h-20 text-[#8B7355] animate-float" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 rounded-full blur-xl opacity-30 animate-pulse"></div>
+            <div className="relative bg-gradient-to-br from-white to-blue-100 p-4 rounded-3xl shadow-2xl border border-white/50">
+              <div className="bg-gradient-to-br from-blue-100 to-blue-200 p-6 rounded-2xl">
+                <Globe className="w-20 h-20 text-blue-600 animate-float" />
               </div>
             </div>
             {/* نجمة زخرفية */}
-            <Star className="absolute -top-2 -right-2 w-8 h-8 text-[#b3a97c] animate-spin-slow" />
+            <Star className="absolute -top-2 -right-2 w-8 h-8 text-blue-500 animate-spin-slow" />
           </div>
           
           <h2 className="text-5xl md:text-7xl font-black mb-6">
-            <span className="bg-gradient-to-r from-[#8B7355] via-[#a89c70] to-[#b3a97c] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
               من نحن
             </span>
             <br />
-            <span className="text-3xl md:text-4xl text-[#6b6b4d]/70 mt-2 block">About Us</span>
+            <span className="text-3xl md:text-4xl text-blue-700/70 mt-2 block">About Us</span>
           </h2>
           
           {/* خط زخرفي */}
           <div className="relative w-64 h-1 mx-auto mb-16">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#b3a97c] to-transparent rounded-full"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent rounded-full blur-sm"></div>
           </div>
           
-          <div className="max-w-5xl mx-auto space-y-8">
+          <div className="max-w-6xl mx-auto space-y-8">
             {/* بطاقة رئيسية */}
             <div className="group relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/40 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl overflow-hidden">
               {/* خلفية متحركة */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#f5f5dc]/0 via-[#e4dfc1]/0 to-[#b3a97c]/0 group-hover:from-[#f5f5dc]/10 group-hover:via-[#e4dfc1]/10 group-hover:to-[#b3a97c]/10 transition-all duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100/0 via-blue-200/0 to-blue-300/0 group-hover:from-blue-100/10 group-hover:via-blue-200/10 group-hover:to-blue-300/10 transition-all duration-700"></div>
               
-              <p className="text-xl md:text-2xl leading-relaxed text-[#6b6b4d] font-medium relative z-10">
-                أنشأت <span className="font-bold text-[#8B7355] bg-gradient-to-r from-[#f5f5dc] to-transparent px-2 py-1 rounded-lg">مدرسة مرج الحمام المهنية للبنين</span> سنة <span className="font-bold text-[#a89c70]">١٩٨٧</span> في عهد المغفور له الملك الحسين بن طلال، وتعتبر من أكبر المدارس المهنية المتميزة في المملكة.
+              <p className="text-xl md:text-2xl leading-relaxed text-blue-800 font-medium relative z-10">
+                بدأت منصة <span className="font-bold text-blue-600 bg-gradient-to-r from-blue-100 to-transparent px-2 py-1 rounded-lg">جو أكاديمي</span> عام <span className="font-bold text-blue-500">2014</span>، كأول منصة تعليم إلكتروني في المملكة الأردنية الهاشمية والمنطقة.
               </p>
-              <p className="text-lg md:text-xl leading-relaxed text-[#6b6b4d]/70 mt-6 font-medium relative z-10">
-                <span className="text-[#a89c70] font-semibold">Marj Al-Hamam Vocational School for Boys</span> was established in <span className="font-bold text-[#a89c70]">1987</span> during the reign of His Majesty the late King Hussein bin Talal. Today, the school is recognized as one of the leading and largest vocational schools across the Kingdom.
+              <p className="text-lg md:text-xl leading-relaxed text-blue-700/70 mt-6 font-medium relative z-10">
+                <span className="text-blue-600 font-semibold">JO Academy</span> started in <span className="font-bold text-blue-500">2014</span> as the first e-learning platform in the Hashemite Kingdom of Jordan and the region.
               </p>
             </div>
             
             {/* بطاقة ثانوية */}
-            <div className="group relative bg-gradient-to-r from-[#f5f5dc]/40 to-[#e4dfc1]/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30 transform transition-all duration-500 hover:scale-[1.01] overflow-hidden">
-              <div className="absolute -right-4 -top-4 w-32 h-32 bg-[#b3a97c]/10 rounded-full blur-2xl"></div>
+            <div className="group relative bg-gradient-to-r from-blue-100/40 to-blue-200/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30 transform transition-all duration-500 hover:scale-[1.01] overflow-hidden">
+              <div className="absolute -right-4 -top-4 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
               
-              <p className="text-lg md:text-xl leading-relaxed text-[#6b6b4d] font-medium relative z-10">
-                بالتعاون مع منظمة <span className="font-bold text-[#8B7355]">"بيرسون" العالمية</span>، اعتمدت المدرسة التدريس المتمازج في خمس تخصصات رئيسية.
+              <p className="text-lg md:text-xl leading-relaxed text-blue-800 font-medium relative z-10">
+                تقدم المنصة العديد من الخدمات التعليمية المتنوعة؛ لتكون الرحلة التعليمية تفاعلية متكاملة، لطلبة المدارس من كلا المنهجين الوطني والدولي، وطلبة الجامعات.
               </p>
-              <p className="text-lg leading-relaxed text-[#6b6b4d]/70 mt-4 font-medium relative z-10">
-                <span className="text-[#a89c70]">In collaboration with the global education organization</span> <span className="font-bold text-[#a89c70]">"Pearson"</span>, the school has adopted a blended learning approach across five specialized fields.
+              <p className="text-lg leading-relaxed text-blue-700/70 mt-4 font-medium relative z-10">
+                The platform offers many diverse educational services; to make the educational journey an integrated interactive experience, for school students from both national and international curricula, and university students.
+              </p>
+            </div>
+
+            {/* بطاقة تقنية */}
+            <div className="group relative bg-gradient-to-r from-blue-200/40 to-cyan-100/40 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/30 transform transition-all duration-500 hover:scale-[1.01] overflow-hidden">
+              <div className="absolute -left-4 -bottom-4 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl"></div>
+              
+              <p className="text-lg md:text-xl leading-relaxed text-blue-800 font-medium relative z-10">
+                بالإضافة إلى تقديم العديد من الدورات التدريبية باستخدام أحدث التقنيات والتكنولوجيا والذكاء الاصطناعي لتسهيل وصول المعلومة للطالب بما يتناسب مع العصر سريع التطور.
+              </p>
+              <p className="text-lg leading-relaxed text-blue-700/70 mt-4 font-medium relative z-10">
+                In addition to providing many training courses using the latest technologies and artificial intelligence to facilitate students' access to information in line with the rapidly evolving era.
               </p>
             </div>
           </div>
         </div>
 
+        {/* قسم الخدمات */}
+        <div id="services" className="text-center mb-24 fade-in">
+          <div className="relative inline-block mb-10">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-200 to-blue-400 rounded-full blur-xl opacity-20"></div>
+            <div className="relative bg-gradient-to-br from-white to-blue-100 p-4 rounded-3xl shadow-2xl">
+              <div className="bg-gradient-to-br from-blue-200 to-blue-400 p-6 rounded-2xl">
+                <BookOpen className="w-20 h-20 text-white" />
+              </div>
+            </div>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-black mb-6">
+            <span className="bg-gradient-to-r from-blue-800 via-blue-500 to-blue-300 bg-clip-text text-transparent">
+              خدمات جو أكاديمي
+            </span>
+            <br />
+            <span className="text-2xl md:text-3xl text-blue-700/60 mt-2 block">JO Academy Services</span>
+          </h2>
+          
+          <div className="w-48 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 mx-auto mb-12 rounded-full"></div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {specializations.map((spec, index) => (
+              <div 
+                key={index} 
+                className="group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {/* تأثير خلفي */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${spec.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                
+                <div className={`relative w-20 h-20 mx-auto mb-6 bg-gradient-to-br ${spec.gradient} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                  <div className="text-white">
+                    {spec.icon}
+                  </div>
+                </div>
+                
+                {/* خط زخرفي تحت الأيقونة */}
+                <div className="w-12 h-1 bg-gradient-to-r from-blue-200 to-blue-400 mx-auto mb-4 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                
+                <h3 className="text-xl font-bold text-blue-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                  {spec.name}
+                </h3>
+                
+                <p className="text-sm text-blue-800/80 leading-relaxed mb-6 group-hover:text-blue-900 transition-colors duration-300">
+                  {spec.description}
+                </p>
+
+                {/* الميزات */}
+                <div className="space-y-2">
+                  {spec.features.map((feature, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-blue-700">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                      <span>{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* زاوية زخرفية */}
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-400/20 rounded-tr-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-blue-500/20 rounded-bl-2xl"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* قسم الرؤية والرسالة */}
         <div id="vision" className="text-center mb-24 fade-in">
-          {/* أيقونة الرؤية الفخمة */}
           <div className="relative inline-block mb-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#8B7355] to-[#b3a97c] rounded-full blur-2xl opacity-20 animate-pulse"></div>
-            <div className="relative bg-gradient-to-br from-[#f5f5dc] to-white p-3 rounded-3xl shadow-2xl">
-              <div className="relative bg-gradient-to-br from-[#8B7355] via-[#a89c70] to-[#b3a97c] p-6 rounded-2xl group">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full blur-2xl opacity-20 animate-pulse"></div>
+            <div className="relative bg-gradient-to-br from-blue-100 to-white p-3 rounded-3xl shadow-2xl">
+              <div className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 p-6 rounded-2xl group">
                 <Eye className="w-20 h-20 text-white group-hover:scale-110 transition-transform duration-300" />
                 <div className="absolute inset-0 bg-white/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
             {/* تأثيرات حول الأيقونة */}
-            <div className="absolute -inset-4 border-2 border-[#b3a97c]/20 rounded-full animate-ping-slow"></div>
+            <div className="absolute -inset-4 border-2 border-blue-400/20 rounded-full animate-ping-slow"></div>
           </div>
           
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-[#6b6b4d] via-[#8B7355] to-[#a89c70] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 bg-clip-text text-transparent">
               الرؤية والرسالة
             </span>
             <br />
-            <span className="text-2xl md:text-3xl text-[#6b6b4d]/60 mt-2 block">Vision & Mission</span>
+            <span className="text-2xl md:text-3xl text-blue-700/60 mt-2 block">Vision & Mission</span>
           </h2>
           
-          <div className="w-48 h-1 bg-gradient-to-r from-[#e4dfc1] via-[#b3a97c] to-[#8B7355] mx-auto mb-12 rounded-full shadow-lg"></div>
+          <div className="w-48 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 mx-auto mb-12 rounded-full shadow-lg"></div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* بطاقة الرؤية */}
-            <div className="group relative bg-gradient-to-br from-white to-[#f5f5dc] rounded-3xl p-8 shadow-2xl border border-white/40 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#b3a97c]/10 to-transparent rounded-full -translate-y-12 translate-x-12"></div>
+            <div className="group relative bg-gradient-to-br from-white to-blue-50 rounded-3xl p-8 shadow-2xl border border-white/40 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full -translate-y-12 translate-x-12"></div>
               
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] rounded-xl shadow-inner">
-                  <Eye className="w-6 h-6 text-[#8B7355]" />
+                <div className="p-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl shadow-inner">
+                  <Eye className="w-6 h-6 text-blue-600" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#6b6b4d]">الرؤية / Vision</h3>
+                <h3 className="text-2xl font-bold text-blue-900">الرؤية / Vision</h3>
               </div>
               
-              <p className="text-lg text-[#6b6b4d] leading-relaxed text-right">
-                أن نكون الرواد في تقديم التعليم المهني والتقني المتميز الذي يلبي احتياجات سوق العمل المحلي والعالمي.
+              <p className="text-lg text-blue-800 leading-relaxed text-right">
+                جيل عربي متمكن بالعلم والمعرفة، مستعد لمواكبة تحديات العصر الرقمي.
               </p>
-              <p className="text-lg text-[#6b6b4d]/70 leading-relaxed text-right mt-4 border-t border-[#e4dfc1] pt-4">
-                <span className="text-[#8B7355] font-medium">To be pioneers</span> in providing distinguished vocational and technical education that meets the needs of the local and global labor market.
+              <p className="text-lg text-blue-700/70 leading-relaxed text-right mt-4 border-t border-blue-200 pt-4">
+                <span className="text-blue-600 font-medium">An empowered Arab generation</span> with science and knowledge, ready to keep pace with the challenges of the digital age.
               </p>
             </div>
             
             {/* بطاقة الرسالة */}
-            <div className="group relative bg-gradient-to-br from-[#8B7355] via-[#a89c70] to-[#b3a97c] rounded-3xl p-8 shadow-2xl border border-white/20 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl overflow-hidden">
+            <div className="group relative bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 rounded-3xl p-8 shadow-2xl border border-white/20 transform transition-all duration-500 hover:scale-[1.03] hover:shadow-3xl overflow-hidden">
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-12 translate-y-12"></div>
               
               <div className="flex items-center gap-3 mb-6">
@@ -242,210 +348,195 @@ const AboutSection = () => {
               </div>
               
               <p className="text-lg text-white leading-relaxed text-right">
-                إعداد جيل من التقنيين والمهنيين المؤهلين تأهيلاً عالياً، قادرين على الإبداع والابتكار والمنافسة في سوق العمل.
+                تقديم رحلة تعليمية تفاعلية متكاملة لطلبة المدارس والجامعات باستخدام أحدث التقنيات والذكاء الاصطناعي.
               </p>
               <p className="text-lg text-white/90 leading-relaxed text-right mt-4 border-t border-white/20 pt-4">
-                <span className="font-semibold">Preparing a generation</span> of highly qualified technicians and professionals capable of creativity, innovation and competition in the labor market.
+                <span className="font-semibold">Providing an integrated interactive educational journey</span> for school and university students using the latest technologies and artificial intelligence.
               </p>
             </div>
           </div>
         </div>
 
-        {/* التخصصات */}
-        <div id="specializations" className="text-center mb-24 fade-in">
-          <div className="relative inline-block mb-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#e4dfc1] to-[#a89c70] rounded-full blur-xl opacity-20"></div>
-            <div className="relative bg-gradient-to-br from-white to-[#f5f5dc] p-4 rounded-3xl shadow-2xl">
-              <div className="bg-gradient-to-br from-[#e4dfc1] to-[#b3a97c] p-6 rounded-2xl">
-                <BookOpen className="w-20 h-20 text-white" />
-              </div>
-            </div>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-[#6b6b4d] via-[#a89c70] to-[#b3a97c] bg-clip-text text-transparent">
-              التخصصات المعتمدة
-            </span>
-            <br />
-            <span className="text-2xl md:text-3xl text-[#6b6b4d]/60 mt-2 block">Accredited Specializations</span>
-          </h2>
-          
-          <div className="w-48 h-1 bg-gradient-to-r from-[#e4dfc1] via-[#a89c70] to-[#8B7355] mx-auto mb-12 rounded-full"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {specializations.map((spec, index) => (
-              <div 
-                key={index} 
-                className="group relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {/* تأثير خلفي */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${spec.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                
-                <div className={`relative w-20 h-20 mx-auto mb-5 bg-gradient-to-br ${spec.gradient} rounded-2xl flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
-                  {spec.icon}
-                </div>
-                
-                {/* خط زخرفي تحت الأيقونة */}
-                <div className="w-12 h-1 bg-gradient-to-r from-[#e4dfc1] to-[#a89c70] mx-auto mb-4 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                
-                <h3 className="text-lg font-bold text-[#6b6b4d] mb-3 group-hover:text-[#8B7355] transition-colors duration-300">
-                  {spec.name}
-                </h3>
-                
-                <p className="text-sm text-[#6b6b4d]/80 leading-relaxed group-hover:text-[#6b6b4d] transition-colors duration-300">
-                  {spec.description}
-                </p>
-                
-                {/* زاوية زخرفية */}
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#b3a97c]/20 rounded-tr-2xl"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#a89c70]/20 rounded-bl-2xl"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* إنجازات المدرسة */}
+        {/* إنجازات جو أكاديمي */}
         <div id="achievements" className="text-center mb-24 fade-in">
           <div className="relative inline-block mb-10">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#b3a97c] to-[#6b6b4d] rounded-full blur-2xl opacity-20"></div>
-            <div className="relative bg-gradient-to-br from-white to-[#f5f5dc] p-4 rounded-3xl shadow-2xl">
-              <div className="bg-gradient-to-br from-[#b3a97c] to-[#6b6b4d] p-6 rounded-2xl">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-800 rounded-full blur-2xl opacity-20"></div>
+            <div className="relative bg-gradient-to-br from-white to-blue-100 p-4 rounded-3xl shadow-2xl">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-6 rounded-2xl">
                 <Award className="w-20 h-20 text-white animate-bounce-slow" />
               </div>
             </div>
           </div>
           
           <h2 className="text-4xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-[#6b6b4d] via-[#b3a97c] to-[#8B7355] bg-clip-text text-transparent">
-              إنجازات المدرسة
+            <span className="bg-gradient-to-r from-blue-800 via-blue-600 to-blue-400 bg-clip-text text-transparent">
+              إنجازات جو أكاديمي
             </span>
             <br />
-            <span className="text-2xl md:text-3xl text-[#6b6b4d]/60 mt-2 block">School Achievements</span>
+            <span className="text-2xl md:text-3xl text-blue-700/60 mt-2 block">JO Academy Achievements</span>
           </h2>
           
-          <div className="w-48 h-1 bg-gradient-to-r from-[#b3a97c] via-[#8B7355] to-[#6b6b4d] mx-auto mb-12 rounded-full shadow-lg"></div>
+          <div className="w-48 h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-blue-800 mx-auto mb-12 rounded-full shadow-lg"></div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
             {achievements.map((achievement, index) => (
               <div 
                 key={index} 
-                className="group relative bg-gradient-to-br from-white to-[#f5f5dc] rounded-2xl p-6 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden fade-in"
+                className="group relative bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* تأثير خلفي متحرك */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#b3a97c]/0 via-[#a89c70]/0 to-[#8B7355]/0 group-hover:from-[#b3a97c]/5 group-hover:via-[#a89c70]/5 group-hover:to-[#8B7355]/5 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400/0 via-blue-500/0 to-blue-600/0 group-hover:from-blue-400/5 group-hover:via-blue-500/5 group-hover:to-blue-600/5 transition-all duration-500"></div>
                 
                 {/* الأيقونة */}
-                <div className="relative w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-[#f5f5dc] to-[#e4dfc1] rounded-xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
-                  <div className="text-[#8B7355]">
+                <div className="relative w-12 h-12 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-blue-600">
                     {achievement.icon}
                   </div>
                 </div>
                 
                 {/* الرقم */}
-                <div className="text-4xl font-bold bg-gradient-to-r from-[#8B7355] to-[#b3a97c] bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                   {achievement.number}
                 </div>
                 
                 {/* النص */}
-                <div className="text-sm text-[#6b6b4d] font-medium group-hover:text-[#8B7355] transition-colors duration-300">
+                <div className="text-xs md:text-sm text-blue-800 font-medium group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                   {achievement.label}
                 </div>
                 
                 {/* خط متحرك في الأسفل */}
-                <div className="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-transparent via-[#b3a97c] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                <div className="absolute bottom-0 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-transparent via-blue-500 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* الخطة التطويرية وفريق الإدارة */}
-        <div id="development" className="text-center mb-20 fade-in">
+        {/* قصص النجاح */}
+        <div id="success-stories" className="text-center mb-24 fade-in">
           <div className="relative mb-10">
             <div className="absolute inset-0 flex justify-center">
-              <div className="w-64 h-64 bg-gradient-to-r from-[#b3a97c]/10 to-[#a89c70]/10 rounded-full blur-2xl"></div>
+              <div className="w-64 h-64 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-full blur-2xl"></div>
             </div>
             
             <h2 className="text-4xl md:text-6xl font-black relative z-10">
-              <span className="bg-gradient-to-r from-[#6b6b4d] via-[#a89c70] to-[#b3a97c] bg-clip-text text-transparent">
-                الخطة التطويرية
+              <span className="bg-gradient-to-r from-blue-800 via-blue-500 to-blue-300 bg-clip-text text-transparent">
+                قصص النجاح
               </span>
               <br />
-              <span className="text-2xl md:text-3xl text-[#6b6b4d]/60 mt-2 block">Development Plan</span>
+              <span className="text-2xl md:text-3xl text-blue-700/60 mt-2 block">Success Stories</span>
             </h2>
           </div>
           
-          <div className="w-48 h-1 bg-gradient-to-r from-[#e4dfc1] via-[#a89c70] to-[#8B7355] mx-auto mb-12 rounded-full"></div>
+          <div className="w-48 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 mx-auto mb-12 rounded-full"></div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {successStories.map((story, index) => (
+              <div 
+                key={index} 
+                className="group relative bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl overflow-hidden fade-in"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                {/* صورة رمزية */}
+                <div className="relative w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-blue-200 to-blue-400 rounded-full flex items-center justify-center text-2xl font-bold text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  {story.name.charAt(0)}
+                </div>
+                
+                <h3 className="text-xl font-bold text-blue-900 mb-2">
+                  {story.name}
+                </h3>
+                
+                <div className="text-blue-600 font-semibold mb-4">
+                  {story.achievement}
+                </div>
+                
+                <p className="text-blue-800/80 leading-relaxed text-right italic border-t border-blue-100 pt-4">
+                  "{story.quote}"
+                </p>
+                
+                {/* علامات اقتباس زخرفية */}
+                <div className="absolute top-4 right-4 text-3xl text-blue-300">"</div>
+                <div className="absolute bottom-4 left-4 text-3xl text-blue-300 transform rotate-180">"</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* فريق العمل */}
+        <div id="team" className="text-center mb-20 fade-in">
+          <div className="relative mb-10">
+            <div className="absolute inset-0 flex justify-center">
+              <div className="w-64 h-64 bg-gradient-to-r from-blue-400/10 to-blue-500/10 rounded-full blur-2xl"></div>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-black relative z-10">
+              <span className="bg-gradient-to-r from-blue-800 via-blue-500 to-blue-300 bg-clip-text text-transparent">
+                فريق العمل
+              </span>
+              <br />
+              <span className="text-2xl md:text-3xl text-blue-700/60 mt-2 block">Our Team</span>
+            </h2>
+          </div>
+          
+          <div className="w-48 h-1 bg-gradient-to-r from-blue-200 via-blue-400 to-blue-600 mx-auto mb-12 rounded-full"></div>
           
           <div className="relative max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/40 transform transition-all duration-500 hover:shadow-3xl overflow-hidden">
             {/* تأثيرات خلفية */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#b3a97c]/5 rounded-full blur-2xl"></div>
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#a89c70]/5 rounded-full blur-2xl"></div>
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-400/5 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl"></div>
             
             <div className="relative z-10">
-              <p className="text-lg md:text-xl text-[#6b6b4d] leading-relaxed mb-8">
-                تم إنشاء هذا الموقع بواسطة طلاب الثاني  ثانوي - إدارة أعمال
-                <br />
-                <span className="text-[#a89c70] font-medium mt-2 block">
-                  This website was created by First-Year Business Administration students.
-                </span>
-              </p>
-              
-              {/* خط زخرفي */}
-              <div className="relative h-px my-10">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#e4dfc1] to-transparent"></div>
-                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#b3a97c] rounded-full"></div>
-              </div>
-              
-              {/* فريق الإدارة */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                {/* المدير */}
-                <div className="group relative bg-gradient-to-br from-[#f5f5dc] to-white rounded-2xl p-6 shadow-lg border border-white/40 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] rounded-xl shadow-inner">
-                      <Shield className="w-6 h-6 text-[#8B7355]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                {/* الأستاذ حمزة */}
+                <div className="group relative bg-gradient-to-br from-blue-50 to-white rounded-2xl p-8 shadow-xl border border-white/40 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl overflow-hidden">
+                  <div className="flex flex-col items-center">
+                    {/* أيقونة */}
+                    <div className="relative w-24 h-24 mb-6 bg-gradient-to-br from-blue-200 to-blue-400 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Users className="w-12 h-12 text-white" />
                     </div>
-                    <div>
-                      <p className="font-bold text-[#6b6b4d] text-right">بإدارة المدير الفاضل</p>
-                      <p className="text-sm text-[#6b6b4d]/70 text-right">Supervised by the esteemed Principal</p>
+                    
+                    <div className="text-center">
+                      <p className="font-bold text-blue-900 text-lg mb-2">بإدارة الأستاذ</p>
+                      <p className="text-sm text-blue-700/70 mb-4">Guided by Instructor</p>
+                      <p className="text-xl text-blue-600 font-semibold group-hover:text-blue-800 transition-colors duration-300">
+                        حمزة المناصير
+                      </p>
+                      <p className="text-blue-700/70 text-sm mt-1">
+                        Hamzeh Al-Manaseer
+                      </p>
                     </div>
                   </div>
-                  <p className="text-xl text-[#8B7355] font-semibold text-center group-hover:text-[#6b6b4d] transition-colors duration-300">
-                    محمود درويش / Mahmoud Darwish
-                  </p>
                 </div>
                 
-                {/* الأستاذ */}
-                <div className="group relative bg-gradient-to-br from-[#f5f5dc] to-white rounded-2xl p-6 shadow-lg border border-white/40 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] rounded-xl shadow-inner">
-                      <Users className="w-6 h-6 text-[#8B7355]" />
+                {/* المطور عبد الملك */}
+                <div className="group relative bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 rounded-2xl p-8 shadow-xl border border-white/20 transform transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl overflow-hidden">
+                  <div className="flex flex-col items-center">
+                    {/* أيقونة */}
+                    <div className="relative w-24 h-24 mb-6 bg-white/20 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Lightbulb className="w-12 h-12 text-white" />
                     </div>
-                    <div>
-                      <p className="font-bold text-[#6b6b4d] text-right">بإدارة الأستاذ</p>
-                      <p className="text-sm text-[#6b6b4d]/70 text-right">Guided by Instructor</p>
+                    
+                    <div className="text-center">
+                      <p className="font-bold text-white text-lg mb-2">تطوير وتنسيق</p>
+                      <p className="text-sm text-white/80 mb-4">Website Design and Coordination</p>
+                      <p className="text-xl text-white font-semibold group-hover:text-white/90 transition-colors duration-300">
+                        عبد الملك أحمد نعيم
+                      </p>
+                      <p className="text-white/80 text-sm mt-1">
+                        Abdul Malik Ahmad Naeem
+                      </p>
                     </div>
                   </div>
-                  <p className="text-xl text-[#8B7355] font-semibold text-center group-hover:text-[#6b6b4d] transition-colors duration-300">
-                    حمزة المناصير / Hamzeh Al-Manaseer
-                  </p>
                 </div>
               </div>
               
-              {/* المطور */}
-              <div className="group relative bg-gradient-to-br from-[#8B7355] via-[#a89c70] to-[#b3a97c] rounded-2xl p-6 shadow-lg border border-white/20 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden">
-                <div className="flex items-center justify-center gap-4 mb-4">
-                  <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                    <Lightbulb className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-bold text-white text-right">تطوير وتنسيق</p>
-                    <p className="text-sm text-white/80 text-right">Website Design and Coordination</p>
-                  </div>
-                </div>
-                <p className="text-xl text-white font-semibold text-center group-hover:text-white/90 transition-colors duration-300">
-                  عبد الملك أحمد نعيم / Abdul Malik Ahmad Naeem
+              {/* رسالة شكر */}
+              <div className="mt-12 pt-8 border-t border-blue-200">
+                <p className="text-lg text-blue-800 leading-relaxed text-center">
+                  نقدم لكم منصة جو أكاديمي التعليمية، جيل عربي متمكن بالعلم والمعرفة
+                </p>
+                <p className="text-blue-600 font-medium mt-2 text-center">
+                  We present to you JO Academy educational platform, an empowered Arab generation with science and knowledge.
                 </p>
               </div>
             </div>
@@ -453,17 +544,17 @@ const AboutSection = () => {
         </div>
 
         {/* الفوتر */}
-        <footer className="text-center py-10 border-t border-[#e4dfc1]/50 mt-16 fade-in">
+        <footer className="text-center py-10 border-t border-blue-200/50 mt-16 fade-in">
           <div className="relative">
             <div className="absolute inset-0 flex justify-center">
-              <div className="w-32 h-32 bg-gradient-to-r from-[#b3a97c]/5 to-[#a89c70]/5 rounded-full blur-xl"></div>
+              <div className="w-32 h-32 bg-gradient-to-r from-blue-400/5 to-blue-500/5 rounded-full blur-xl"></div>
             </div>
             
-            <p className="text-base text-[#6b6b4d] font-medium relative z-10">
-              جميع الحقوق محفوظة © Educational Communication Launcher 2025
+            <p className="text-base text-blue-800 font-medium relative z-10">
+              جميع الحقوق محفوظة © جو أكاديمي JO ACADEMY 2025
               <br />
-              <span className="text-[#a89c70] text-sm mt-2 block">
-                All rights reserved © Educational Communication Launcher 2025
+              <span className="text-blue-600 text-sm mt-2 block">
+                All rights reserved © JO ACADEMY 2025
               </span>
             </p>
             
@@ -472,7 +563,7 @@ const AboutSection = () => {
               {[...Array(3)].map((_, i) => (
                 <div 
                   key={i} 
-                  className="w-2 h-2 bg-gradient-to-r from-[#b3a97c] to-[#a89c70] rounded-full animate-pulse"
+                  className="w-2 h-2 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full animate-pulse"
                   style={{ animationDelay: `${i * 0.2}s` }}
                 ></div>
               ))}
