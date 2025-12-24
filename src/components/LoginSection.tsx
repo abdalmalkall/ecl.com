@@ -16,103 +16,107 @@ import {
   Award,
   Zap,
   Star,
-  Lock
+  Lock,
+  Globe,
+  Video,
+  FileText,
+  BarChart
 } from "lucide-react";
 
 const LoginSection = () => {
   const navigate = useNavigate();
 
   const userTypes = [
-    { 
-      id: "admin", 
-      title: "المدير ومدراء الأقسام", 
-      icon: <Crown className="w-8 h-8" />, 
-      description: "وصول كامل لإدارة المنصة والتقارير المتقدمة",
-      gradient: "from-[#8B7355] to-[#B38B5B]",
-      features: ["لوحة تحكم كاملة", "تقارير مفصلة", "إدارة المستخدمين"]
-    },
+    // { 
+    //   id: "admin", 
+    //   title: "مدير المنصة", 
+    //   icon: <Crown className="w-8 h-8" />, 
+    //   description: "وصول كامل لإدارة المنصة والتقارير المتقدمة",
+    //   gradient: "from-blue-600 to-blue-800",
+    //   features: ["لوحة تحكم كاملة", "تقارير مفصلة", "إدارة المستخدمين"]
+    // },
     { 
       id: "teacher", 
-      title: "المعلم", 
+      title: "المعلم / المدرب", 
       icon: <GraduationCap className="w-8 h-8" />, 
-      description: "إدارة الدروس والدرجات والتواصل مع الطلاب",
-      gradient: "from-[#D2B48C] to-[#F4A460]",
-      features: ["إدارة المواد", "تقييم الطلاب", "متابعة الحضور"]
+      description: "إدارة الدورات والتقييمات والتواصل مع الطلاب",
+      gradient: "from-blue-400 to-blue-600",
+      features: ["إدارة الدورات", "تقييم الطلاب", "رفع المحتوى"]
     },
     { 
       id: "student", 
       title: "الطالب", 
       icon: <BookOpen className="w-8 h-8" />, 
-      description: "عرض الدروس والواجبات والنتائج الدراسية",
-      gradient: "from-[#A89C70] to-[#C9B37A]",
-      features: ["المقررات الدراسية", "الواجبات", "النتائج"]
+      description: "تصفح الدورات والمشاركة في الاختبارات والمتابعة",
+      gradient: "from-blue-300 to-blue-500",
+      features: ["الدورات المتاحة", "الاختبارات", "التقدم الدراسي"]
     },
     { 
       id: "parent", 
       title: "ولي الأمر", 
       icon: <Users className="w-8 h-8" />, 
-      description: "متابعة تقدم الطالب والحضور والدرجات",
-      gradient: "from-[#6b6b4d] to-[#8B7355]",
-      features: ["تقارير الأداء", "متابعة الحضور", "تواصل مع المعلمين"]
+      description: "متابعة تقدم الطالب ونتائج الدورات",
+      gradient: "from-blue-700 to-blue-900",
+      features: ["تقارير الأداء", "متابعة التقدم", "تواصل مع المدربين"]
     },
+    // { 
+    //   id: "content", 
+    //   title: "مدير المحتوى", 
+    //   icon: <FileText className="w-8 h-8" />, 
+    //   description: "إدارة المحتوى التعليمي والدروس المصورة",
+    //   gradient: "from-cyan-500 to-blue-700",
+    //   features: ["إدارة الفيديوهات", "تنظيم المحتوى", "مراقبة الجودة"]
+    // },
     { 
-      id: "supervisor", 
-      title: "المشرف", 
-      icon: <Eye className="w-8 h-8" />, 
-      description: "الإشراف والمتابعة والتقارير الإحصائية",
-      gradient: "from-[#5D8AA8] to-[#7EB6D9]",
-      features: ["تقارير إحصائية", "متابعة الأداء", "تقارير الجودة"]
-    },
-    { 
-      id: "ministry", 
-      title: "وزارة التربية والتعليم", 
-      icon: <Building className="w-8 h-8" />, 
-      description: "دخول خاص لموظفي الوزارة والمتابعة العامة",
-      gradient: "from-[#2E4057] to-[#4A648C]",
-      features: ["إحصاءات عامة", "تقارير وطنية", "متابعة المناهج"]
+      id: "analytics", 
+      title: "محلل البيانات", 
+      icon: <BarChart className="w-8 h-8" />, 
+      description: "تحليل أداء المنصة والإحصاءات المتقدمة",
+      gradient: "from-indigo-500 to-blue-700",
+      features: ["تقارير إحصائية", "تحليل الأداء", "توقعات النمو"]
     },
   ];
 
   return (
-    <section className="relative min-h-screen py-20 overflow-hidden bg-gradient-to-b from-[#FAFAF5] via-white to-[#F5F5F0]">
+    <section className="relative min-h-screen py-20 overflow-hidden bg-gradient-to-b from-blue-50 via-white to-blue-100">
       {/* خلفيات زخرفية */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* دوائر زخرفية */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-[#D2B48C]/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#8B7355]/10 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-blue-300/10 to-transparent rounded-full blur-3xl"></div>
         
         {/* خطوط زخرفية */}
-        <div className="absolute top-1/4 left-10 w-px h-64 bg-gradient-to-b from-transparent via-[#B38B5B]/20 to-transparent"></div>
-        <div className="absolute bottom-1/4 right-10 w-px h-64 bg-gradient-to-b from-transparent via-[#D2B48C]/20 to-transparent"></div>
+        <div className="absolute top-1/4 left-10 w-px h-64 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent"></div>
+        <div className="absolute bottom-1/4 right-10 w-px h-64 bg-gradient-to-b from-transparent via-blue-300/20 to-transparent"></div>
         
         {/* نقاط متناثرة */}
-        <div className="absolute top-20 right-1/4 w-2 h-2 bg-[#B38B5B]/30 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-40 left-1/3 w-3 h-3 bg-[#D2B48C]/30 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute top-20 right-1/4 w-2 h-2 bg-blue-400/30 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-40 left-1/3 w-3 h-3 bg-blue-300/30 rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* العنوان الرئيسي */}
         <div className="text-center mb-20">
-          <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-[#F5F5DC] to-[#E4DFC1] rounded-2xl mb-8 shadow-lg">
+          <div className="inline-flex items-center justify-center p-3 bg-gradient-to-r from-blue-100 to-blue-200 rounded-2xl mb-8 shadow-lg">
             <div className="p-4 bg-white rounded-xl shadow-inner">
-              <Lock className="w-12 h-12 text-[#8B7355]" />
+              <Globe className="w-12 h-12 text-blue-600" />
             </div>
           </div>
           
           <h2 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="bg-gradient-to-r from-[#8B7355] via-[#B38B5B] to-[#D2B48C] bg-clip-text text-transparent">
-              المنصة التعليمية الذكية
+            <span className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">
+              منصة جو أكاديمي التعليمية
             </span>
           </h2>
           
-          <p className="text-xl text-[#6b6b4d] max-w-2xl mx-auto leading-relaxed">
-            اختر نوع الحساب المناسب لدخول منصتنا التعليمية المتكاملة
-            <span className="block text-[#A89C70] mt-2">قم باختيار دورك للوصول إلى الخدمات المخصصة</span>
+          <p className="text-xl text-blue-800 max-w-2xl mx-auto leading-relaxed">
+            أول منصة تعليم إلكتروني في الأردن والمنطقة
+            <span className="block text-blue-600 mt-2">قم باختيار دورك للوصول إلى الخدمات المخصصة</span>
           </p>
           
           {/* خط زخرفي */}
           <div className="relative w-48 h-1 mx-auto mt-12">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#B38B5B] to-transparent rounded-full"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent rounded-full blur-sm"></div>
           </div>
         </div>
@@ -125,7 +129,7 @@ const LoginSection = () => {
               className="group relative animate-fade-in-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <Card className="relative overflow-hidden h-full border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] group-hover:border-[#B38B5B]/30">
+              <Card className="relative overflow-hidden h-full border-0 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] group-hover:border-blue-400/30 border border-blue-200">
                 {/* خلفية متدرجة */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${userType.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
                 
@@ -143,24 +147,24 @@ const LoginSection = () => {
                     </div>
                     
                     {/* نجمة صغيرة */}
-                    <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-[#F4A460] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
                   {/* العنوان والوصف */}
                   <div className="text-center space-y-4">
-                    <h3 className="text-2xl font-bold text-[#6b6b4d] group-hover:text-[#8B7355] transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-blue-900 group-hover:text-blue-600 transition-colors duration-300">
                       {userType.title}
                     </h3>
                     
-                    <p className="text-[#6b6b4d]/80 leading-relaxed min-h-[60px]">
+                    <p className="text-blue-800/80 leading-relaxed min-h-[60px]">
                       {userType.description}
                     </p>
 
                     {/* الميزات */}
-                    <div className="space-y-2 pt-4 border-t border-[#E4DFC1]">
+                    <div className="space-y-2 pt-4 border-t border-blue-200">
                       {userType.features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-[#6b6b4d]/70">
-                          <Star className="w-3 h-3 text-[#D2B48C]" />
+                        <div key={i} className="flex items-center gap-2 text-sm text-blue-800/70">
+                          <Star className="w-3 h-3 text-blue-400" />
                           <span>{feature}</span>
                         </div>
                       ))}
@@ -168,9 +172,9 @@ const LoginSection = () => {
                   </div>
 
                   {/* زر الدخول */}
-                  <div className="mt-8 pt-6 border-t border-[#E4DFC1]">
+                  <div className="mt-8 pt-6 border-t border-blue-200">
                     <Button
-                      className={`w-full py-6 bg-gradient-to-r ${userType.gradient} text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 group-hover:from-[#B38B5B] group-hover:to-[#D2B48C]`}
+                      className={`w-full py-6 bg-gradient-to-r ${userType.gradient} text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 group-hover:from-blue-500 group-hover:to-blue-700`}
                       onClick={() => navigate("/auth")}
                     >
                       <span className="flex items-center justify-center gap-2">
@@ -186,8 +190,8 @@ const LoginSection = () => {
                 </CardContent>
 
                 {/* زوايا زخرفية */}
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-[#D2B48C]/30 rounded-tr-xl"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-[#B38B5B]/30 rounded-bl-xl"></div>
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-blue-400/30 rounded-tr-xl"></div>
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-blue-600/30 rounded-bl-xl"></div>
               </Card>
             </div>
           ))}
@@ -195,40 +199,40 @@ const LoginSection = () => {
 
         {/* قسم الدخول كزائر */}
         <div className="max-w-3xl mx-auto">
-          <Card className="bg-gradient-to-r from-[#F5F5DC] to-[#E4DFC1] border-0 shadow-2xl overflow-hidden">
+          <Card className="bg-gradient-to-r from-blue-100 to-blue-200 border-0 shadow-2xl overflow-hidden border border-blue-300">
             <div className="p-8 text-center">
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="p-3 bg-white/80 rounded-xl shadow-inner">
-                  <Eye className="w-8 h-8 text-[#8B7355]" />
+                  <Eye className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-[#6b6b4d]">الدخول كزائر</h3>
-                  <p className="text-[#6b6b4d]/70">تصفح المنصة بدون تسجيل دخول</p>
+                  <h3 className="text-2xl font-bold text-blue-900">الدخول كزائر</h3>
+                  <p className="text-blue-800/70">تصفح المنصة بدون تسجيل دخول</p>
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div className="p-4 bg-white/80 rounded-xl">
-                  <BookOpen className="w-6 h-6 text-[#B38B5B] mx-auto mb-2" />
-                  <p className="text-sm text-[#6b6b4d]">تصفح الكتب الإلكترونية</p>
+                  <Video className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+                  <p className="text-sm text-blue-800">مشاهدة الدروس المجانية</p>
                 </div>
                 <div className="p-4 bg-white/80 rounded-xl">
-                  <Users className="w-6 h-6 text-[#D2B48C] mx-auto mb-2" />
-                  <p className="text-sm text-[#6b6b4d]">مشاهدة الدروس العامة</p>
+                  <BookOpen className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+                  <p className="text-sm text-blue-800">تصفح المواد التعليمية</p>
                 </div>
                 <div className="p-4 bg-white/80 rounded-xl">
-                  <Award className="w-6 h-6 text-[#A89C70] mx-auto mb-2" />
-                  <p className="text-sm text-[#6b6b4d]">التعرف على الإنجازات</p>
+                  <Award className="w-6 h-6 text-cyan-500 mx-auto mb-2" />
+                  <p className="text-sm text-blue-800">التعرف على قصص النجاح</p>
                 </div>
               </div>
               
               <Button
-                className="px-12 py-6 bg-gradient-to-r from-[#6b6b4d] to-[#8B7355] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
+                className="px-12 py-6 bg-gradient-to-r from-blue-700 to-blue-900 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105"
                 onClick={() => navigate("/smart-book")}
               >
                 <span className="flex items-center justify-center gap-2">
                   <Shield className="w-5 h-5" />
-                  الدخول كزائر - الكتاب الذكي
+                  الدخول كزائر - تصفح الدورات
                   <Target className="w-5 h-5" />
                 </span>
               </Button>
@@ -238,17 +242,17 @@ const LoginSection = () => {
 
         {/* نصائح وأرقام */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-[#E4DFC1]">
-            <div className="text-3xl font-bold text-[#B38B5B] mb-2">5000+</div>
-            <div className="text-[#6b6b4d] font-medium">مستخدم نشط</div>
+          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
+            <div className="text-3xl font-bold text-blue-600 mb-2">2M+</div>
+            <div className="text-blue-800 font-medium">طالب مسجل</div>
           </div>
-          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-[#E4DFC1]">
-            <div className="text-3xl font-bold text-[#D2B48C] mb-2">99.8%</div>
-            <div className="text-[#6b6b4d] font-medium">رضا المستخدمين</div>
+          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
+            <div className="text-3xl font-bold text-blue-400 mb-2">99.8%</div>
+            <div className="text-blue-800 font-medium">رضا المستخدمين</div>
           </div>
-          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-[#E4DFC1]">
-            <div className="text-3xl font-bold text-[#A89C70] mb-2">24/7</div>
-            <div className="text-[#6b6b4d] font-medium">دعم فني متوفر</div>
+          <div className="p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
+            <div className="text-3xl font-bold text-cyan-500 mb-2">13K+</div>
+            <div className="text-blue-800 font-medium">دورة تدريبية</div>
           </div>
         </div>
       </div>

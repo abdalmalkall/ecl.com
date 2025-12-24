@@ -18,28 +18,23 @@ import {
   AlertCircle,
   Smartphone,
   Globe,
-  Heart,
-  Video,
-  FileText,
-  BarChart,
-  Target,
-  Zap
+  Heart
 } from "lucide-react";
 
 const Auth = () => {
   const navigate = useNavigate();
 
-  // جميع الإيميلات التجريبية لجو أكاديمي
+  // جميع الإيميلات التجريبية
   const testEmails = [
     { email: "student.test@marjalhamam.edu.jo", password: "Student123!", role: "طالب تجريبي", icon: <GraduationCap className="w-4 h-4" /> },
     { email: "teacher.test@marjalhamam.edu.jo", password: "Teacher123!", role: "معلم تجريبي", icon: <User className="w-4 h-4" /> },
      { email: "Guardian@marjalhamam.edu.jo", password: "Guardian123!", role: "ولي الامر", icon: <Users className="w-4 h-4" /> },
-    // { email: "admin.test@marjalhamam.edu.jo", password: "Admin123!", role: "إدارة تجريبية", icon: <Shield className="w-4 h-4" /> },
-    // { email: "support.test@marjalhamam.edu.jo", password: "Support123!", role: "دعم فني", icon: <Smartphone className="w-4 h-4" /> },
-    // { email: "engineering@marjalhamam.edu.jo", password: "Engineering123!", role: "الهندسة", icon: <Building className="w-4 h-4" /> },
+    { email: "admin.test@marjalhamam.edu.jo", password: "Admin123!", role: "إدارة تجريبية", icon: <Shield className="w-4 h-4" /> },
+    { email: "support.test@marjalhamam.edu.jo", password: "Support123!", role: "دعم فني", icon: <Smartphone className="w-4 h-4" /> },
+    { email: "engineering@marjalhamam.edu.jo", password: "Engineering123!", role: "الهندسة", icon: <Building className="w-4 h-4" /> },
    
-    // { email: "it@marjalhamam.edu.jo", password: "IT123!", role: "تكنولوجيا المعلومات", icon: <Globe className="w-4 h-4" /> },
-    // { email: "principal@marjalhamam.edu.jo", password: "Principal123!", role: "المدير العام", icon: <Shield className="w-4 h-4" /> }
+    { email: "it@marjalhamam.edu.jo", password: "IT123!", role: "تكنولوجيا المعلومات", icon: <Globe className="w-4 h-4" /> },
+    { email: "principal@marjalhamam.edu.jo", password: "Principal123!", role: "المدير العام", icon: <Shield className="w-4 h-4" /> }
   ];
 
   // المستخدمون مع الصفحات
@@ -52,13 +47,13 @@ const Auth = () => {
     { email: "Guardian@marjalhamam.edu.jo", password: "Guardian123!", redirect: "/page6", role: "أعمال" },
   ];
 
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [shake, setShake] = useState(false);
+  const [showTestEmails, setShowTestEmails] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"login" | "test">("login");
 
@@ -120,28 +115,28 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center p-4 font-cairo">
+    <div className="min-h-screen bg-gradient-to-br from-[#fafaf0] via-white to-[#f5f5dc] flex items-center justify-center p-4 font-cairo">
       {/* خلفية زخرفية */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-blue-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-300/10 to-blue-100/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#b3a97c]/10 to-[#a89c70]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[#e4dfc1]/10 to-[#f5f5dc]/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-[#8B7355]/5 to-[#7A6345]/5 rounded-full blur-2xl"></div>
       </div>
 
       {/* البطاقة الرئيسية */}
       <div className={`relative w-full max-w-5xl bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 overflow-hidden transition-all duration-500 ${shake ? 'animate-shake' : ''}`}>
         {/* تصميم علوي */}
-        <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 p-8 text-white text-center relative overflow-hidden">
+        <div className="bg-gradient-to-r from-[#8B7355] via-[#a89c70] to-[#b3a97c] p-8 text-white text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/30 via-white/50 to-white/30"></div>
           <div className="absolute -top-4 -right-4 w-32 h-32 bg-white/10 rounded-full"></div>
           <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-white/10 rounded-full"></div>
           
           <div className="relative z-10">
             <div className="inline-flex items-center justify-center p-4 bg-white/20 rounded-full backdrop-blur-sm mb-6">
-              <Globe className="w-16 h-16" />
+              <GraduationCap className="w-16 h-16" />
             </div>
-            <h1 className="text-4xl font-black mb-3">جو أكاديمي - JO ACADEMY</h1>
-            <p className="text-lg opacity-90">جيل عربي متمكن - أول منصة تعليم إلكتروني</p>
+            <h1 className="text-4xl font-black mb-3">مرج الحمام المهنية للبنين</h1>
+            <p className="text-lg opacity-90">نظام التعليم الذكي المتكامل</p>
             <div className="flex justify-center gap-2 mt-4">
               <Sparkles className="w-5 h-5 animate-pulse" />
               <span className="text-sm">بيانات تجريبية جاهزة للاستخدام</span>
@@ -154,17 +149,17 @@ const Auth = () => {
           {/* قسم تسجيل الدخول */}
           <div className="p-10">
             {/* تبويبات */}
-            <div className="flex mb-8 border-b border-blue-200">
+            <div className="flex mb-8 border-b border-[#e4dfc1]">
               <button
                 onClick={() => setActiveTab("login")}
-                className={`flex-1 py-3 font-bold text-lg transition-all duration-300 ${activeTab === "login" ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-blue-400'}`}
+                className={`flex-1 py-3 font-bold text-lg transition-all duration-300 ${activeTab === "login" ? 'text-[#8B7355] border-b-2 border-[#8B7355]' : 'text-gray-500 hover:text-[#a89c70]'}`}
               >
                 <LogIn className="inline w-5 h-5 ml-2" />
                 تسجيل الدخول
               </button>
               <button
                 onClick={() => setActiveTab("test")}
-                className={`flex-1 py-3 font-bold text-lg transition-all duration-300 ${activeTab === "test" ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-blue-400'}`}
+                className={`flex-1 py-3 font-bold text-lg transition-all duration-300 ${activeTab === "test" ? 'text-[#8B7355] border-b-2 border-[#8B7355]' : 'text-gray-500 hover:text-[#a89c70]'}`}
               >
                 <Shield className="inline w-5 h-5 ml-2" />
                 بيانات تجريبية
@@ -173,8 +168,8 @@ const Auth = () => {
 
             {activeTab === "login" ? (
               <>
-                <h2 className="text-2xl font-bold text-blue-900 mb-2">أهلاً بك في جو أكاديمي 👋</h2>
-                <p className="text-gray-600 mb-8">أدخل بيانات الدخول للوصول إلى المنصة التعليمية الإلكترونية</p>
+                <h2 className="text-2xl font-bold text-[#6b6b4d] mb-2">أهلاً بك مرة أخرى 👋</h2>
+                <p className="text-gray-600 mb-8">أدخل بيانات الدخول للوصول إلى نظام التعليم الذكي</p>
 
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div className="relative">
@@ -187,7 +182,7 @@ const Auth = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full pr-12 pl-12 py-4 bg-blue-50 border border-blue-200 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                      className="w-full pr-12 pl-12 py-4 bg-[#fafaf0] border border-[#e4dfc1] rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#b3a97c] focus:border-transparent transition-all duration-300"
                     />
                   </div>
 
@@ -201,12 +196,12 @@ const Auth = () => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full pr-12 pl-12 py-4 bg-blue-50 border border-blue-200 rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-300"
+                      className="w-full pr-12 pl-12 py-4 bg-[#fafaf0] border border-[#e4dfc1] rounded-xl text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#b3a97c] focus:border-transparent transition-all duration-300"
                     />
                     <button
                       type="button"
                       onClick={togglePasswordVisibility}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-blue-600 transition-colors"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-[#8B7355] transition-colors"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -215,7 +210,7 @@ const Auth = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${loading ? 'opacity-80 cursor-not-allowed' : ''}`}
+                    className={`w-full py-4 bg-gradient-to-r from-[#8B7355] to-[#b3a97c] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${loading ? 'opacity-80 cursor-not-allowed' : ''}`}
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
@@ -233,7 +228,7 @@ const Auth = () => {
 
                 <div className="relative my-8">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-blue-200"></div>
+                    <div className="w-full border-t border-[#e4dfc1]"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
                     <span className="px-4 bg-white text-gray-500">أو</span>
@@ -242,20 +237,20 @@ const Auth = () => {
 
                 <button
                   onClick={handleSmartBook}
-                  className="w-full py-4 bg-gradient-to-r from-blue-700 to-blue-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
+                  className="w-full py-4 bg-gradient-to-r from-[#6b6b4d] to-[#8a7866] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
                 >
                   <BookOpen className="ml-2 w-5 h-5" />
-                  الدخول كزائر - تصفح الدورات
+                  الدخول كزائر (الكتاب الذكي)
                 </button>
               </>
             ) : (
               /* قسم البيانات التجريبية */
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-blue-100 to-blue-200 p-5 rounded-2xl border border-blue-200">
+                <div className="bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] p-5 rounded-2xl border border-[#e4dfc1]">
                   <div className="flex items-start gap-3">
-                    <AlertCircle className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
+                    <AlertCircle className="w-6 h-6 text-[#8B7355] flex-shrink-0 mt-1" />
                     <div>
-                      <h3 className="font-bold text-blue-900 mb-2">معلومات مهمة</h3>
+                      <h3 className="font-bold text-[#6b6b4d] mb-2">معلومات مهمة</h3>
                       <p className="text-sm text-gray-600">
                         هذه بيانات تجريبية للاختبار فقط. يمكنك النقر على أي حساب لتعبئة البيانات تلقائياً، أو نسخ بيانات الدخول.
                       </p>
@@ -267,19 +262,19 @@ const Auth = () => {
                   {testEmails.map((test, index) => (
                     <div
                       key={index}
-                      className="group bg-white border border-blue-200 rounded-xl p-4 hover:border-blue-400 hover:shadow-lg transition-all duration-300"
+                      className="group bg-white border border-[#e4dfc1] rounded-xl p-4 hover:border-[#b3a97c] hover:shadow-lg transition-all duration-300"
                     >
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
-                          <div className="p-2 bg-gradient-to-r from-blue-100 to-blue-200 rounded-lg">
+                          <div className="p-2 bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] rounded-lg">
                             {test.icon}
                           </div>
-                          <span className="font-bold text-blue-900">{test.role}</span>
+                          <span className="font-bold text-[#6b6b4d]">{test.role}</span>
                         </div>
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleCopyCredentials(test.email, test.password)}
-                            className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                            className="p-2 text-gray-500 hover:text-[#8B7355] hover:bg-[#f5f5dc] rounded-lg transition-colors"
                             title="نسخ البيانات"
                           >
                             {copiedEmail === test.email ? (
@@ -290,7 +285,7 @@ const Auth = () => {
                           </button>
                           <button
                             onClick={() => handleQuickLogin(test.email, test.password)}
-                            className="px-3 py-1 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm rounded-lg hover:shadow-md transition-shadow"
+                            className="px-3 py-1 bg-gradient-to-r from-[#8B7355] to-[#b3a97c] text-white text-sm rounded-lg hover:shadow-md transition-shadow"
                           >
                             دخول سريع
                           </button>
@@ -300,20 +295,20 @@ const Auth = () => {
                       <div className="space-y-2">
                         <div
                           onClick={() => handleTestEmailClick(test.email, test.password)}
-                          className="p-3 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
+                          className="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                         >
                           <div className="flex items-center justify-between text-sm">
                             <span className="text-gray-500">البريد الإلكتروني:</span>
-                            <span className="font-mono text-blue-900 font-medium">{test.email}</span>
+                            <span className="font-mono text-[#6b6b4d] font-medium">{test.email}</span>
                           </div>
                         </div>
                         <div
                           onClick={() => handleTestEmailClick(test.email, test.password)}
-                          className="p-3 bg-blue-50 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors"
+                          className="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                         >
                           <div className="flex items-center justify-between text-sm">
                             <span className="text-gray-500">كلمة المرور:</span>
-                            <span className="font-mono text-blue-900 font-medium">{test.password}</span>
+                            <span className="font-mono text-[#6b6b4d] font-medium">{test.password}</span>
                           </div>
                         </div>
                       </div>
@@ -329,7 +324,7 @@ const Auth = () => {
                       setCopiedEmail('all');
                       setTimeout(() => setCopiedEmail(null), 2000);
                     }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-700 to-blue-800 text-white rounded-xl hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#6b6b4d] to-[#8a7866] text-white rounded-xl hover:shadow-lg transition-all"
                   >
                     <Copy className="w-4 h-4" />
                     نسخ جميع البيانات
@@ -345,13 +340,13 @@ const Auth = () => {
           </div>
 
           {/* قسم الإيميلات التجريبية */}
-          <div className="bg-gradient-to-b from-blue-50 to-blue-100 p-10 border-r border-blue-200 lg:border-r-0 lg:border-l">
+          <div className="bg-gradient-to-b from-[#fafaf0] to-[#f5f5dc] p-10 border-r border-[#e4dfc1] lg:border-r-0 lg:border-l">
             <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl">
-                <Video className="w-8 h-8 text-white" />
+              <div className="p-3 bg-gradient-to-r from-[#b3a97c] to-[#8B7355] rounded-xl">
+                <Mail className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-blue-900">الحسابات التجريبية</h2>
+                <h2 className="text-2xl font-bold text-[#6b6b4d]">الإيميلات التجريبية</h2>
                 <p className="text-gray-600">جميع الحسابات المتاحة للاختبار</p>
               </div>
             </div>
@@ -364,20 +359,20 @@ const Auth = () => {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg ${index % 4 === 0 ? 'bg-gradient-to-r from-blue-100 to-blue-200' : 
-                        index % 4 === 1 ? 'bg-gradient-to-r from-cyan-100 to-blue-100' : 
-                        index % 4 === 2 ? 'bg-gradient-to-r from-blue-200 to-blue-300' : 
-                        'bg-gradient-to-r from-blue-300 to-blue-400'}`}>
+                      <div className={`p-2 rounded-lg ${index % 4 === 0 ? 'bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1]' : 
+                        index % 4 === 1 ? 'bg-gradient-to-r from-[#e4dfc1] to-[#d6bfa5]' : 
+                        index % 4 === 2 ? 'bg-gradient-to-r from-[#d6bfa5] to-[#b3a97c]' : 
+                        'bg-gradient-to-r from-[#b3a97c] to-[#8B7355]'}`}>
                         {email.icon}
                       </div>
                       <div>
-                        <h4 className="font-bold text-blue-900">{email.role}</h4>
+                        <h4 className="font-bold text-[#6b6b4d]">{email.role}</h4>
                         <p className="text-xs text-gray-500">نقرتين للدخول السريع</p>
                       </div>
                     </div>
                     <button
                       onClick={() => handleQuickLogin(email.email, email.password)}
-                      className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm rounded-lg hover:shadow-md transition-shadow transform hover:scale-105"
+                      className="px-4 py-2 bg-gradient-to-r from-[#8B7355] to-[#b3a97c] text-white text-sm rounded-lg hover:shadow-md transition-shadow transform hover:scale-105"
                     >
                       دخول مباشر
                     </button>
@@ -386,24 +381,24 @@ const Auth = () => {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-500">الإيميل:</span>
-                      <span className="font-mono text-blue-900 bg-blue-50 px-3 py-1 rounded">{email.email}</span>
+                      <span className="font-mono text-[#6b6b4d] bg-gray-50 px-3 py-1 rounded">{email.email}</span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-500">كلمة المرور:</span>
-                      <span className="font-mono text-blue-900 bg-blue-50 px-3 py-1 rounded">{email.password}</span>
+                      <span className="font-mono text-[#6b6b4d] bg-gray-50 px-3 py-1 rounded">{email.password}</span>
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-400 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#b3a97c] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 pt-8 border-t border-blue-200">
-              <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl">
-                <Zap className="w-6 h-6 text-blue-600" />
+            <div className="mt-8 pt-8 border-t border-[#e4dfc1]">
+              <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] rounded-xl">
+                <Heart className="w-6 h-6 text-[#8B7355]" />
                 <div>
-                  <p className="font-bold text-blue-900">نصيحة سريعة</p>
+                  <p className="font-bold text-[#6b6b4d]">نصيحة سريعة</p>
                   <p className="text-sm text-gray-600">استخدم زر "نسخ جميع البيانات" لحفظ جميع الإيميلات وكلمات المرور</p>
                 </div>
               </div>
@@ -412,18 +407,18 @@ const Auth = () => {
         </div>
 
         {/* الفوتر */}
-        <div className="bg-gradient-to-r from-blue-100 to-blue-200 p-6 text-center border-t border-blue-200">
+        <div className="bg-gradient-to-r from-[#f5f5dc] to-[#e4dfc1] p-6 text-center border-t border-[#e4dfc1]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
-              <Shield className="w-5 h-5 text-blue-600" />
-              <span className="text-sm text-blue-800">بيانات تجريبية - للاختبار فقط</span>
+              <Shield className="w-5 h-5 text-[#8B7355]" />
+              <span className="text-sm text-[#6b6b4d]">بيانات تجريبية - للاختبار فقط</span>
             </div>
-            <div className="text-sm text-blue-800">
-              © 2025 جو أكاديمي JO ACADEMY - أول منصة تعليم إلكتروني
+            <div className="text-sm text-[#6b6b4d]">
+              © 2025 مدرسة مرج الحمام المهنية للبنين - نظام التعليم الذكي
             </div>
             <div className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-blue-500 animate-pulse" />
-              <span className="text-sm text-blue-800">جميع الحقوق محفوظة</span>
+              <Sparkles className="w-4 h-4 text-[#b3a97c] animate-pulse" />
+              <span className="text-sm text-[#6b6b4d]">جميع الحقوق محفوظة</span>
             </div>
           </div>
         </div>
@@ -446,15 +441,15 @@ const Auth = () => {
           width: 6px;
         }
         ::-webkit-scrollbar-track {
-          background: #ebf8ff;
+          background: #f5f5dc;
           border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb {
-          background: #60a5fa;
+          background: #b3a97c;
           border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-          background: #3b82f6;
+          background: #8B7355;
         }
       `}</style>
     </div>
