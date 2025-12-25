@@ -2,7 +2,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-// import schoolHero from "@/assets/image.png";
+import schoolHero from "@/assets/image.png";
 import { 
   Calendar, 
   School, 
@@ -28,98 +28,104 @@ import {
 } from "lucide-react";
 
 const HeroSection = () => {
-  // الألوان الرئيسية - زرقاء وبيضاء
+  // الألوان الرئيسية - ذهبية وبيجية وأنيقة
   const colors = {
-    primary: "#0066CC",      // أزرق رئيسي
-    secondary: "#3399FF",    // أزرق فاتح
-    accent: "#00B0FF",       // أزرق ساطع
-    light: "#F8FAFC",        // أبيض مائل للرمادي الفاتح
-    dark: "#003366",         // أزرق غامق
-    success: "#10B981",      // أخضر (للنجاح)
-    textLight: "#FFFFFF",    // أبيض
-    textDark: "#1E293B",     // أزرق غامق للنصوص
+    primary: "#B38B5B",      // ذهبي غامق رئيسي
+    secondary: "#D2B48C",    // ذهبي فاتح
+    accent: "#F4A460",       // برتقالي ذهبي
+    light: "#F5F5DC",        // بيج فاتح جداً (Beige)
+    dark: "#8B7355",         // بني ذهبي غامق
+    success: "#A89C70",      // زيتوني ذهبي
+    textLight: "#FFFFFF",     // أبيض
+    textDark: "#6b6b4d",      // بني غامق للنصوص
   };
 
-  // تحديث الإحصائيات بناءً على موقع جو أكاديمي
   const stats = [
     { 
-      number: "2014", 
-      label: "عام التأسيس", 
-      subLabel: "منذ 11 عاماً", 
+      number: "37", 
+      label: "عاماً من التميز", 
+      subLabel: "منذ 1987", 
       icon: Calendar, 
       color: colors.accent,
-      description: "أول منصة تعليم إلكتروني في الأردن والمنطقة"
+      gradient: `from-[${colors.accent}] to-[${colors.primary}]`,
+      description: "منذ تأسيس المدرسة في عهد الملك الحسين بن طلال"
     },
     { 
-      number: "2M+", 
-      label: "طالب", 
-      subLabel: "مسجلين", 
-      icon: Users, 
-      color: colors.secondary,
-      description: "أكثر من مليوني طالب يستفيدون من خدماتنا"
-    },
-    { 
-      number: "13K+", 
-      label: "دورة تدريبية", 
-      subLabel: "متاحة", 
+      number: "5", 
+      label: "تخصصات معتمدة", 
+      subLabel: "بيرسون العالمية", 
       icon: BookOpen, 
-      color: colors.primary,
-      description: "دورات متنوعة لجميع المراحل الدراسية"
+      color: colors.secondary,
+      gradient: `from-[${colors.secondary}] to-[${colors.success}]`,
+      description: "برامج تعليمية معتمدة من بيرسون العالمية"
     },
     { 
-      number: "2.8K", 
+      number: "5000+", 
+      label: "خريج متميز", 
+      subLabel: "في سوق العمل", 
+      icon: Users, 
+      color: colors.primary,
+      gradient: `from-[${colors.primary}] to-[${colors.dark}]`,
+      description: "خريجون يعملون في مختلف القطاعات"
+    },
+    { 
+      number: "50+", 
       label: "معلم مؤهل", 
       subLabel: "وخبراء", 
       icon: Award, 
       color: colors.success,
-      description: "كادر تدريسي متخصص باستخدام أحدث التقنيات"
+      gradient: `from-[${colors.success}] to-[${colors.secondary}]`,
+      description: "كادر تدريسي مؤهل وذو خبرة"
     },
   ];
 
-  // إنجازات جو أكاديمي
   const achievements = [
-    { title: "أول منصة تعليمية", year: "2014", icon: <Trophy className="w-4 h-4" color={colors.accent} /> },
-    { title: "تغطية شاملة", year: "2024", icon: <Star className="w-4 h-4" color={colors.accent} /> },
-    { title: "تعليم تفاعلي", year: "2023", icon: <Crown className="w-4 h-4" color={colors.accent} /> },
-    { title: "استخدام الذكاء الاصطناعي", year: "2023", icon: <Lightbulb className="w-4 h-4" color={colors.accent} /> },
+    { title: "جائزة التميز", year: "2024", icon: <Trophy className="w-4 h-4" color={colors.accent} /> },
+    { title: "اعتماد بيرسون الذهبي", year: "2023", icon: <Star className="w-4 h-4" color={colors.accent} /> },
+    { title: "أفضل مدرسة مهنية", year: "2022", icon: <Crown className="w-4 h-4" color={colors.accent} /> },
+    { title: "جائزة الابتكار", year: "2021", icon: <Lightbulb className="w-4 h-4" color={colors.accent} /> },
   ];
 
-  // ميزات جو أكاديمي
   const features = [
-    { text: "منصة إلكترونية متكاملة", icon: <Globe className="w-4 h-4" color={colors.secondary} /> },
-    { text: "دروس مجانية مصورة", icon: <BookOpen className="w-4 h-4" color={colors.secondary} /> },
-    { text: "اختبارات تفاعلية", icon: <TargetIcon className="w-4 h-4" color={colors.secondary} /> },
-    { text: "ملفات ومواد شاملة", icon: <Shield className="w-4 h-4" color={colors.secondary} /> },
+    { text: "تعليم متمازج", icon: <Globe className="w-4 h-4" color={colors.secondary} /> },
+    { text: "مناهج عالمية", icon: <BookOpen className="w-4 h-4" color={colors.secondary} /> },
+    { text: "تدريب عملي", icon: <TargetIcon className="w-4 h-4" color={colors.secondary} /> },
+    { text: "بيئة آمنة", icon: <Shield className="w-4 h-4" color={colors.secondary} /> },
   ];
 
   return (
     <section
       id="home"
       dir="rtl"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-[#6b6b4d] to-gray-800"
       role="banner"
-      aria-label="قسم البطل الرئيسي لجو أكاديمي"
+      aria-label="قسم البطل الرئيسي لمدرسة مرج الحمام المهنية"
     >
       {/* خلفيات متحركة */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0">
-        
+          <img
+            src={schoolHero}
+            alt="مدرسة مرج الحمام المهنية للبنين"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            loading="eager"
+          />
           {/* طبقة متدرجة فوق الصورة */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-800/70 via-blue-700/85 to-blue-900/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8B7355]/70 via-[#6b6b4d]/85 to-gray-800/90" />
         </div>
         
-        {/* تأثيرات زخرفية زرقاء */}
-        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-blue-400/15 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-blue-300/15 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-r from-blue-500/10 to-transparent rounded-full blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
+        {/* تأثيرات زخرفية ذهبية */}
+        <div className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-[#D2B48C]/15 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-[#F4A460]/15 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-r from-[#B38B5B]/10 to-transparent rounded-full blur-2xl animate-pulse" style={{animationDelay: '4s'}}></div>
         
-        {/* خطوط زخرفية زرقاء */}
-        <div className="absolute top-20 left-20 w-px h-40 bg-gradient-to-b from-transparent via-blue-400/40 to-transparent"></div>
-        <div className="absolute bottom-20 right-20 w-px h-40 bg-gradient-to-b from-transparent via-blue-300/40 to-transparent"></div>
+        {/* خطوط زخرفية ذهبية */}
+        <div className="absolute top-20 left-20 w-px h-40 bg-gradient-to-b from-transparent via-[#D2B48C]/40 to-transparent"></div>
+        <div className="absolute bottom-20 right-20 w-px h-40 bg-gradient-to-b from-transparent via-[#F4A460]/40 to-transparent"></div>
         
-        {/* نقاط زرقاء متناثرة */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-blue-300 rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
+        {/* نقاط ذهبية متناثرة */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#D2B48C] rounded-full animate-bounce"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-3 h-3 bg-[#F4A460] rounded-full animate-bounce" style={{animationDelay: '0.5s'}}></div>
       </div>
 
       {/* المحتوى الرئيسي */}
@@ -132,13 +138,13 @@ const HeroSection = () => {
             <div className="inline-flex items-center gap-3">
               <Badge
                 variant="secondary"
-                className="px-6 py-3 border-2 border-blue-400 bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-lg shadow-lg group hover:border-blue-300"
+                className="px-6 py-3 border-2 border-[#D2B48C] bg-white/10 hover:bg-white/20 transition-all duration-300 backdrop-blur-lg shadow-lg group hover:border-[#F4A460]"
                 style={{ borderColor: colors.secondary }}
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" style={{ color: colors.secondary }} />
                   <span className="font-bold text-sm md:text-base" style={{ color: colors.secondary }}>
-                    منذ عام 2014 - أول منصة تعليم إلكتروني
+                    منذ عام 1987 في عهد الملك الحسين بن طلال
                   </span>
                   <Sparkles className="h-4 w-4" style={{ color: colors.accent }} />
                 </div>
@@ -149,7 +155,7 @@ const HeroSection = () => {
                 {achievements.slice(0, 2).map((ach, i) => (
                   <div 
                     key={i} 
-                    className="flex items-center gap-1 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:border-blue-400 transition-colors"
+                    className="flex items-center gap-1 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 hover:border-[#D2B48C] transition-colors"
                     style={{ borderColor: i === 0 ? `${colors.secondary}40` : 'rgba(255,255,255,0.2)' }}
                   >
                     {ach.icon}
@@ -162,7 +168,7 @@ const HeroSection = () => {
             {/* العنوان الرئيسي */}
             <div className="space-y-6">
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight">
-                <span className="text-white">جو أكاديمي</span>
+                <span className="text-white">مدرسة مرج الحمام</span>
                 <span className="block mt-4 relative">
                   <span 
                     className="animate-text-glow"
@@ -173,7 +179,7 @@ const HeroSection = () => {
                       backgroundClip: 'text'
                     }}
                   >
-                    جيل عربي متمكن
+                    المهنية للبنين
                   </span>
                   <Sparkles 
                     className="absolute -top-4 -right-4 w-8 h-8 animate-spin-slow" 
@@ -207,7 +213,7 @@ const HeroSection = () => {
                 <Target className="h-6 w-6" style={{ color: colors.secondary }} />
                 <div>
                   <h3 className="text-xl font-bold" style={{ color: colors.light }}>
-                    <span style={{ color: colors.secondary }}>رؤيتنا:</span> جيل عربي متمكن بالعلم والمعرفة
+                    <span style={{ color: colors.secondary }}>رؤيتنا:</span> مجتمع مدرسي فاعل، ملتزم، طموح، يسعى للتميز
                   </h3>
                 </div>
               </div>
@@ -216,10 +222,10 @@ const HeroSection = () => {
                 <Zap className="h-6 w-6" style={{ color: colors.primary }} />
                 <div>
                   <h3 className="text-xl font-bold" style={{ color: colors.light }}>
-                    <span style={{ color: colors.primary }}>هدفنا:</span> رحلة تعليمية تفاعلية متكاملة
+                    <span style={{ color: colors.primary }}>هدفنا:</span> تكامل العملية التعليمية التربوية
                   </h3>
                   <p className="text-sm mt-1" style={{ color: `${colors.light}90` }}>
-                    استخدام أحدث التقنيات والذكاء الاصطناعي لتسهيل وصول المعلومة
+                    تقديم تعليم متكامل يجمع بين الأصالة والحداثة
                   </p>
                 </div>
               </div>
@@ -229,7 +235,7 @@ const HeroSection = () => {
             <Card 
               className="group relative overflow-hidden rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-[1.02] border"
               style={{ 
-                background: `linear-gradient(135deg, ${colors.light}15 0%, rgba(0, 102, 204, 0.15) 100%)`,
+                background: `linear-gradient(135deg, ${colors.light}15 0%, rgba(139, 115, 85, 0.15) 100%)`,
                 backdropFilter: 'blur(20px)',
                 borderColor: `${colors.secondary}40`
               }}
@@ -269,21 +275,21 @@ const HeroSection = () => {
                 
                 <div className="space-y-4 text-right">
                   <p className="text-lg leading-relaxed font-medium" style={{ color: colors.light }}>
-                    تقديم رحلة تعليمية تفاعلية متكاملة لطلبة المدارس والجامعات،
-                    باستخدام أحدث التقنيات والتكنولوجيا والذكاء الاصطناعي لتسهيل 
-                    وصول المعلومة للطالب بما يتناسب مع العصر سريع التطور.
+                    توفير فرص متكافئة لجميع الطلاب لتلقي تعليم عالي الجودة،
+                    يُمكّنهم من التفكير العلمي والإبداعي، والعمل بروح الفريق،
+                    والتعلم مدى الحياة.
                   </p>
                   
                   <p className="text-lg leading-relaxed" style={{ color: `${colors.light}90` }}>
-                    نخدم كلا المنهجين الوطني والدولي، ونقدم دورات تدريبية متنوعة
-                    لطلبة المدارس والجامعات، مع توفير ملفات واختبارات لكل مادة.
+                    نزود طلابنا بالمعارف والمهارات والقيم التي تؤهلهم لدخول سوق العمل
+                    والمساهمة في نهضة الوطن بكل كفاءة واقتدار.
                   </p>
                 </div>
 
                 {/* خط زخرفي سفلي */}
                 <div className="mt-6 pt-6" style={{ borderTop: `1px solid ${colors.secondary}30` }}>
                   <div className="flex items-center justify-end gap-4">
-                    <span className="text-sm" style={{ color: `${colors.light}60` }}>تعليم إلكتروني متميز لمستقبل مشرق</span>
+                    <span className="text-sm" style={{ color: `${colors.light}60` }}>تعليم متميز لمستقبل مشرق</span>
                     <Heart className="h-4 w-4 animate-pulse" style={{ color: colors.accent }} />
                   </div>
                 </div>
@@ -311,10 +317,10 @@ const HeroSection = () => {
                   color: colors.light,
                   backgroundColor: `${colors.light}10`
                 }}
-                onClick={() => window.open("https://www.joacademy.com", "_blank")}
+                onClick={() => window.open("https://maps.app.goo.gl/8GvFqPD9GR4SdCLT8", "_blank")}
               >
-                <Globe className="ml-2 h-5 w-5" style={{ color: colors.secondary }} />
-                زيارة الموقع
+                <MapPin className="ml-2 h-5 w-5" style={{ color: colors.secondary }} />
+                زيارتنا
               </Button>
             </div>
           </div>
@@ -341,7 +347,7 @@ const HeroSection = () => {
                     <Card 
                       className="relative overflow-hidden p-8 backdrop-blur-xl rounded-3xl hover:shadow-2xl transition-all duration-500 hover:scale-105 border"
                       style={{ 
-                        background: `linear-gradient(135deg, ${colors.light}15 0%, rgba(0, 102, 204, 0.15) 100%)`,
+                        background: `linear-gradient(135deg, ${colors.light}15 0%, rgba(139, 115, 85, 0.15) 100%)`,
                         borderColor: `${colors.secondary}40`,
                         backdropFilter: 'blur(20px)'
                       }}
